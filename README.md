@@ -40,11 +40,15 @@ Key principles:
 
 ## Submitting Benchmarks
 
-### Automatic Upload (recommended)
+### Automatic Upload (recommended but comming soon)
 
 LLMark can upload benchmark results directly to LLMark-Site without requiring GitHub knowledge.
 
 * No account required
+
+### Upload via GitHub (currently available)
+
+LLMark can upload benchmark results directly to LLMark-Site Just with you signing in with GitHub and creatin a token.
 
 ---
 
