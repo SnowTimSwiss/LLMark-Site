@@ -24,7 +24,7 @@ jobs:
       - name: Install Dependencies
         run: |
           cd site
-          npm ci
+          npm install
 
       - name: Generate Data & Build
         run: |
