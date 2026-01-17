@@ -1,9 +1,13 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 // Adjust paths based on location: site/scripts/gen-index.js
 // Data is in: ../../data/benchmarks
 // Output is in: ../public/db.json
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const BENCHMARKS_DIR = path.join(__dirname, '../../data/benchmarks');
 const OUT_FILE = path.join(__dirname, '../public/db.json');
