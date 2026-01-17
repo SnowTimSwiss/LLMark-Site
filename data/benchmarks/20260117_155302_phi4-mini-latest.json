@@ -1,0 +1,169 @@
+{
+  "benchmarks": [
+    {
+      "comment": "105.45 tokens/sec",
+      "details": {
+        "tokens": 135,
+        "tokens_per_sec": 105.45,
+        "total_time_s": 1.728
+      },
+      "metrics": {
+        "avg_vram_mb": 3945.34,
+        "gpu_detected": true,
+        "peak_vram_mb": 5320.12
+      },
+      "name": "A",
+      "raw_response_preview": "One, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty, thirty-one, forty-two, fifty-three, sixty-four, ",
+      "score": 105.45
+    },
+    {
+      "comment": "The email maintains a professional tone, includes an explicit deadline, and is well-polished. However, it has minor issues such as typos and redundant wording.",
+      "issues": [
+        "Subject line contains a typo (INV-INV instead of INV)",
+        "Missing facts section in the prompt",
+        "Unnecessary repetition and redundancy in some sentences"
+      ],
+      "metrics": {
+        "avg_vram_mb": 5273.74,
+        "gpu_detected": true,
+        "peak_vram_mb": 5285.75
+      },
+      "name": "B",
+      "score": 7
+    },
+    {
+      "comment": "The letter is mostly formal and includes necessary details, but lacks verification against given facts (none were provided), uses incorrect currency for a German context, and misses a proper formal closing.",
+      "issues": [
+        "No facts provided in the prompt to verify inclusion",
+        "Incorrect currency (CHF instead of EUR)",
+        "Missing formal closing phrase"
+      ],
+      "metrics": {
+        "avg_vram_mb": 5287.97,
+        "gpu_detected": true,
+        "peak_vram_mb": 5292.49
+      },
+      "name": "C",
+      "score": 6
+    },
+    {
+      "comment": "The response contains inaccuracies and unnecessary details, affecting overall accuracy and clarity.",
+      "issues": [
+        "Incorrect judgment on Switzerland's EU status",
+        "Poor reasoning in the explanation of Earth's shape",
+        "Unnecessary verbosity in several points"
+      ],
+      "metrics": {
+        "avg_vram_mb": 5269.54,
+        "gpu_detected": true,
+        "peak_vram_mb": 5291.28
+      },
+      "name": "D",
+      "score": 6
+    },
+    {
+      "comment": "The response lacks sufficient detail to meet the benchmark criteria, with only half the number of facts needed and unclear organization.",
+      "issues": [
+        "Only 6 facts were extracted instead of the required 10+",
+        "Missing deadlines and responsibilities for tasks",
+        "Poor structure as it does not clearly separate task list from open issues"
+      ],
+      "metrics": {
+        "avg_vram_mb": 5303.64,
+        "gpu_detected": true,
+        "peak_vram_mb": 5307.76
+      },
+      "name": "E",
+      "score": 4
+    },
+    {
+      "comment": "The response lacks sufficient detail to meet the criteria fully. The timetable provided is incomplete and does not address all necessary conditions due to insufficient input facts.",
+      "issues": [
+        "Insufficient facts provided to create a complete timetable.",
+        "The model answer does not fulfill the required constraints as there are no specific details about class times and room availability for all days.",
+        "There is confusion regarding the number of classes per day and week, leading to incomplete schedules."
+      ],
+      "metrics": {
+        "avg_vram_mb": 5296.03,
+        "gpu_detected": true,
+        "peak_vram_mb": 5362.38
+      },
+      "name": "F",
+      "score": 4
+    },
+    {
+      "comment": "The piece successfully captures the essence of cyberpunk-noir with engaging characters and an intriguing plot. Despite a few minor issues, it maintains a high level of engagement and atmosphere.",
+      "issues": [
+        "The story does not explicitly mention all required terms (none provided), but it effectively captures the cyberpunk-noir atmosphere and includes elements like neon lights, rain-soaked streets, and a mysterious figure named Jules. The ending is a dramatic cliffhanger, leaving readers wanting more. However, there are some minor inconsistencies in the narrative flow that slightly detract from the overall quality of writing style."
+      ],
+      "metrics": {
+        "avg_vram_mb": 5352.36,
+        "gpu_detected": true,
+        "peak_vram_mb": 5362.36
+      },
+      "name": "G",
+      "score": 8
+    },
+    {
+      "comment": "The answer uses a creative toy analogy but stretches the concept with magical elements that may confuse rather than clarify. It's detailed and engaging, but could be more concise for an ELI5 explanation.",
+      "issues": [
+        "The explanation is a bit too long and complex for an ELI5 (Explain Like I'm 5) format",
+        "The analogy of magic toys might be confusing as it introduces elements not directly related to quantum entanglement"
+      ],
+      "metrics": {
+        "avg_vram_mb": 5360.41,
+        "gpu_detected": true,
+        "peak_vram_mb": 5375.62
+      },
+      "name": "H",
+      "score": 7
+    },
+    {
+      "comment": "The solution correctly implements password validation with all necessary checks and includes a docstring and example calls. However, there's a discrepancy between the expected output and actual logic for one of the examples.",
+      "issues": [
+        "The example call provided does not accurately reflect the expected output for 'VerySecureP@ssword123' as it should be True based on the criteria defined in the function, but the comment suggests False. This is a logical error."
+      ],
+      "metrics": {
+        "avg_vram_mb": 5348.1,
+        "gpu_detected": true,
+        "peak_vram_mb": 5365.09
+      },
+      "name": "I",
+      "score": 8
+    },
+    {
+      "comment": "The response is empathetic, offers concrete steps, avoids hollow phrases for the most part, and maintains a professional tone. Minor issues with some standard phrases and overly detailed explanations.",
+      "issues": [
+        "Uses a few standard phrases like 'heartfelt sympathy' and 'top priority'",
+        "Could be more concise in the emergency purchase option explanation"
+      ],
+      "metrics": {
+        "avg_vram_mb": 5359.46,
+        "gpu_detected": true,
+        "peak_vram_mb": 5367.37
+      },
+      "name": "J",
+      "score": 8
+    }
+  ],
+  "date": "2026-01-17T15:49:12.387536",
+  "judge_model": "qwen2.5:14b-instruct",
+  "model": "phi4-mini:latest",
+  "model_details": {
+    "context_length": null,
+    "family": "phi3",
+    "parameter_size": "3.8B",
+    "quantization": "Q4_K_M"
+  },
+  "model_estimated_vram_usage_mb": 3945.34,
+  "system": {
+    "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
+    "date_utc": "2026-01-17T15:49:12.387536",
+    "gpu": "AMD Radeon RX 6700 XT",
+    "os": "Windows 11",
+    "ram_total_gb": 31.84,
+    "vram_total_mb": 12272.0,
+    "vram_used_mb": 1208.64
+  },
+  "total_score": 58
+}
