@@ -1,5 +1,106 @@
 [
   {
+    "model": "gemma3:12b",
+    "benchmark_version": "v2",
+    "date": "2026-01-18T16:58:46.329770",
+    "judge_model": "qwen2.5:14b-instruct",
+    "model_details": {
+      "context_length": null,
+      "family": "gemma3",
+      "parameter_size": "12.2B",
+      "quantization": "Q4_K_M"
+    },
+    "filename": "gemma3-12b",
+    "benchmarks": [
+      {
+        "name": "Velocity/Speed",
+        "score": 34.68,
+        "comment": "34.68 tokens/sec",
+        "issues": []
+      },
+      {
+        "name": "English Quality",
+        "score": 7.67,
+        "comment": "Good performance. Issue (B3): Missing key information such as actua...",
+        "issues": []
+      },
+      {
+        "name": "German Quality",
+        "score": 8,
+        "comment": "Good performance. Issue (C1): Fehlende Rechtschreibung von 'Zahlung...",
+        "issues": []
+      },
+      {
+        "name": "Fact Checking",
+        "score": 8.33,
+        "comment": "Good performance. Issue (D1): Fact 3 is incorrectly marked as INCOR... Strong: Mixed Facts - Some Tricky",
+        "issues": []
+      },
+      {
+        "name": "Context Extraction",
+        "score": 8,
+        "comment": "Good performance. Issue (E1): The answer includes more than 10 spec...",
+        "issues": []
+      },
+      {
+        "name": "Logic & Planning",
+        "score": 7.67,
+        "comment": "Good performance. Issue (F3): No clear indication of how Project 3'...",
+        "issues": []
+      },
+      {
+        "name": "Creative Writing",
+        "score": 7.67,
+        "comment": "Good performance. Issue (G2): Historical accuracy could be improved...",
+        "issues": []
+      },
+      {
+        "name": "Technical Explanation",
+        "score": 8,
+        "comment": "Good performance. Issue (H1): The explanation could be slightly mor...",
+        "issues": []
+      },
+      {
+        "name": "Python Coding",
+        "score": 9,
+        "comment": "Excellent performance. Strong: Debug & Refactor Challenge",
+        "issues": []
+      },
+      {
+        "name": "Customer Support",
+        "score": 9,
+        "comment": "Excellent performance. Strong: Billing Issue - Angry Customer",
+        "issues": []
+      },
+      {
+        "name": "Knowledge",
+        "score": 9.67,
+        "comment": "Excellent performance. Strong: Science & Technology Facts",
+        "issues": []
+      },
+      {
+        "name": "Uncertainty Handling",
+        "score": 9,
+        "comment": "Excellent performance. Strong: Conflicting Information",
+        "issues": []
+      }
+    ],
+    "metrics": {
+      "peak_vram_mb": 10027.06,
+      "avg_vram_mb": 823.6825
+    },
+    "gpu_data": [
+      {
+        "gpu": "AMD Radeon RX 6700 XT",
+        "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
+        "peak_vram": 10027.06,
+        "avg_vram": 823.6825,
+        "speed": 34.68
+      }
+    ],
+    "total_score": 92
+  },
+  {
     "model": "llama3.1:latest",
     "benchmark_version": "v2",
     "date": "2026-01-18T16:36:40.078345",
