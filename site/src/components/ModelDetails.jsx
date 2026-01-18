@@ -35,8 +35,17 @@ const ModelDetails = ({ data }) => {
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--accent)' }}>
                             <HardDrive size={18} /> <strong>VRAM Usage</strong>
                         </div>
-                        <div>Peak: {metrics?.peak_vram_mb?.toFixed(0)} MB</div>
-                        <div>Avg: {metrics?.avg_vram_mb?.toFixed(0)} MB</div>
+                        <div>Peak: {metrics?.peak_vram_mb?.toFixed(0) || '-'} MB</div>
+                        <div>Avg: {metrics?.avg_vram_mb?.toFixed(0) || '-'} MB</div>
+                    </div>
+                    <div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--accent)' }}>
+                            <HardDrive size={18} /> <strong>Context Window</strong>
+                        </div>
+                        <div>{model_details?.context_length || 'Unknown'}</div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
+                            Note: VRAM usage and performance depends on context window size. Tested with: {model_details?.context_length || 'N/A'}. It might have been higher if the context window was larger.
+                        </div>
                     </div>
                     <div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--accent)' }}>
@@ -77,7 +86,7 @@ const ModelDetails = ({ data }) => {
                         )}
 
                         <div style={{ marginTop: '1rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                            Speed: {bench.details?.tokens_per_sec} t/s | Time: {bench.details?.total_time_s}s
+                            Speed: {bench.details?.tokens_per_sec} t/s on {system?.gpu} | Time: {bench.details?.total_time_s}s
                         </div>
                     </div>
                 ))}

@@ -36,7 +36,26 @@ files.forEach(file => {
         // Add metadata
         data.filename = file;
 
-        // Sanitize or normalize if needed
+        // Aggregate VRAM metrics from benchmarks if missing from root
+        if (data.benchmarks && data.benchmarks.length > 0) {
+            const peakVrams = data.benchmarks
+                .map(b => b.metrics?.peak_vram_mb)
+                .filter(v => v !== undefined && v !== null);
+            const avgVrams = data.benchmarks
+                .map(b => b.metrics?.avg_vram_mb)
+                .filter(v => v !== undefined && v !== null);
+
+            if (!data.metrics) data.metrics = {};
+
+            if (peakVrams.length > 0) {
+                data.metrics.peak_vram_mb = Math.max(...peakVrams);
+            }
+            if (avgVrams.length > 0) {
+                const sum = avgVrams.reduce((a, b) => a + b, 0);
+                data.metrics.avg_vram_mb = sum / avgVrams.length;
+            }
+        }
+
         benchmarks.push(data);
     } catch (err) {
         console.error(`Error parsing ${file}:`, err);
