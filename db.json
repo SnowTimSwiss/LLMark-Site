@@ -10,6 +10,7 @@
       "parameter_size": "3.8B",
       "quantization": "Q4_K_M"
     },
+    "filename": "phi4-mini-latest",
     "benchmarks": [
       {
         "name": "Velocity/Speed",
