@@ -172,5 +172,185 @@
       "peak_vram_mb": 5593.93,
       "avg_vram_mb": 5411.478
     }
+  },
+  {
+    "benchmark_version": "v1",
+    "benchmarks": [
+      {
+        "comment": "105.31 tokens/sec",
+        "description": "Velocity/Speed",
+        "details": {
+          "tokens": 256,
+          "tokens_per_sec": 105.31,
+          "total_time_s": 2.931
+        },
+        "metrics": {
+          "avg_vram_mb": 4077.64,
+          "gpu_detected": true,
+          "peak_vram_mb": 5488.52
+        },
+        "name": "A",
+        "raw_response_preview": "One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Nineteen, Twenty, Twenty-one, twenty-two, twenty-three, Twenty-fou",
+        "score": 105.31
+      },
+      {
+        "comment": "The email maintains a professional tone and includes an explicit deadline, but lacks factual details from the prompt and has minor grammatical issues.",
+        "issues": [
+          "Missing facts section in the prompt",
+          "Unnecessary and redundant phrase 'We hope this message finds you well.'",
+          "Grammar errors such as 'As we value our business relationship and understanding your circumstances during these times may have changed temporarily.' should be corrected to maintain clarity.",
+          "Subject line could be more urgent ('Urgent' is mentioned but not emphasized enough)."
+        ],
+        "metrics": {
+          "avg_vram_mb": 5480.53,
+          "gpu_detected": true,
+          "peak_vram_mb": 5486.76
+        },
+        "name": "B",
+        "score": 7
+      },
+      {
+        "comment": "The letter uses formal German language but contains factual errors regarding dates, currency, and missing information about facts. The structure and formality are correct.",
+        "issues": [
+          "Missing facts section in the model answer",
+          "Incorrect currency (CHF instead of EUR)",
+          "Deadline date is incorrect and inconsistent with the subject line"
+        ],
+        "metrics": {
+          "avg_vram_mb": 5480.19,
+          "gpu_detected": true,
+          "peak_vram_mb": 5480.19
+        },
+        "name": "C",
+        "score": 6
+      },
+      {
+        "comment": "The response contains several factual inaccuracies and misleading statements, which significantly impact its score. While some facts are correctly identified, the justifications provided often contain errors or misunderstandings.",
+        "issues": [
+          "Incorrect justification for the Berlin Wall's construction date",
+          "Misleading statement about water boiling at higher atmospheric pressure",
+          "Incorrect reasoning for Albert Einstein's Nobel Prize"
+        ],
+        "metrics": {
+          "avg_vram_mb": 5489.75,
+          "gpu_detected": true,
+          "peak_vram_mb": 5511.33
+        },
+        "name": "D",
+        "score": 6
+      },
+      {
+        "comment": "The response does not align with the given benchmark task of extracting at least 10 facts. Instead, it appears to be a structured summary of tasks and issues which is unrelated to information extraction.",
+        "issues": [
+          "No facts were extracted from the provided text.",
+          "The task was not an information extraction but a project management summary.",
+          "There are no deadlines and responsibilities listed as per the original criteria, leading to confusion in evaluation."
+        ],
+        "metrics": {
+          "avg_vram_mb": 5461.37,
+          "gpu_detected": true,
+          "peak_vram_mb": 5462.13
+        },
+        "name": "E",
+        "score": 2
+      },
+      {
+        "comment": "The submission fails to meet basic requirements due to lack of factual basis and assumptions made without evidence.",
+        "issues": [
+          "No facts provided to satisfy constraints",
+          "Timetable does not align with the given facts as there are no facts provided",
+          "The model answer assumes certain constraints that were not stated in the benchmark"
+        ],
+        "metrics": {
+          "avg_vram_mb": 5491.64,
+          "gpu_detected": true,
+          "peak_vram_mb": 5492.29
+        },
+        "name": "F",
+        "score": 2
+      },
+      {
+        "comment": "The submission effectively captures the essence of a cyberpunk-noir setting with vivid imagery and an intriguing plot. However, minor issues in writing precision and adherence to provided instructions (lack of facts/truths) slightly reduce its score.",
+        "issues": [
+          "The story does not include any specific facts/truths provided in the benchmark instructions as there were none listed.",
+          "While the writing style is engaging and fits the cyberpunk-noir genre well, it could benefit from more precise language and fewer grammatical errors."
+        ],
+        "metrics": {
+          "avg_vram_mb": 5472.15,
+          "gpu_detected": true,
+          "peak_vram_mb": 5481.95
+        },
+        "name": "G",
+        "score": 8
+      },
+      {
+        "comment": "The answer provides a basic analogy but introduces magical elements that could mislead about the nature of quantum mechanics. It also lacks clarity in explaining the non-locality aspect of entanglement.",
+        "issues": [
+          "The explanation uses 'magic' which might confuse the concept of scientific reality for children",
+          "Doesn't clearly explain that entanglement is instantaneous and not dependent on distance"
+        ],
+        "metrics": {
+          "avg_vram_mb": 5492.27,
+          "gpu_detected": true,
+          "peak_vram_mb": 5492.27
+        },
+        "name": "H",
+        "score": 7
+      },
+      {
+        "comment": "The solution correctly implements password validation using regex and covers most criteria effectively, but it misses explicitly checking for the absence of spaces. Additionally, the examples provided do not fully demonstrate all failure cases.",
+        "issues": [
+          "The regex pattern does not explicitly prohibit spaces, which is one of the criteria. The current pattern allows for passwords with spaces as long as they meet other conditions.",
+          "The example usage in the docstring should include an example that fails due to containing a space or being too short."
+        ],
+        "metrics": {
+          "avg_vram_mb": 5497.84,
+          "gpu_detected": true,
+          "peak_vram_mb": 5502.64
+        },
+        "name": "I",
+        "score": 8
+      },
+      {
+        "comment": "The response is empathetic and professional, but lacks specific details on how the airline will track the suitcase or what form of compensation will be offered.",
+        "issues": [
+          "No concrete next steps provided for tracking down the missing luggage",
+          "Offering compensation and emergency purchase option is vague without specifics"
+        ],
+        "metrics": {
+          "avg_vram_mb": 5485.98,
+          "gpu_detected": true,
+          "peak_vram_mb": 5485.98
+        },
+        "name": "J",
+        "score": 8
+      }
+    ],
+    "date": "2026-01-18T10:24:57.292446",
+    "json_format_version": "v1",
+    "judge_model": "qwen2.5:14b-instruct",
+    "model": "phi4-mini:latest",
+    "model_details": {
+      "context_length": null,
+      "family": "phi3",
+      "parameter_size": "3.8B",
+      "quantization": "Q4_K_M"
+    },
+    "model_estimated_vram_usage_mb": 4077.64,
+    "system": {
+      "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
+      "date_utc": "2026-01-18T10:24:57.292446",
+      "gpu": "AMD Radeon RX 6700 XT",
+      "os": "Windows 11",
+      "ram_total_gb": 31.84,
+      "vram_total_mb": 12272,
+      "vram_used_mb": 1560.21
+    },
+    "total_score": 54,
+    "filename": "20260118_102734_phi4-mini-latest.json",
+    "metrics": {
+      "peak_vram_mb": 5511.33,
+      "avg_vram_mb": 5342.935999999999
+    }
   }
 ]
