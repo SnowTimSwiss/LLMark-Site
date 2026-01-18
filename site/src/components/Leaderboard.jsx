@@ -72,7 +72,7 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
     const [availableGpus, setAvailableGpus] = useState([]);
 
     // Filter State
-    const [scoreRange, setScoreRange] = useState([0, 100]);
+    const [scoreRange, setScoreRange] = useState([0, 110]);
     const [vramRange, setVramRange] = useState([0, 100]);
     const [selectedFamilies, setSelectedFamilies] = useState([]);
     const [selectedGpus, setSelectedGpus] = useState([]);
@@ -194,7 +194,7 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
     };
 
     const resetFilters = () => {
-        setScoreRange([0, 100]);
+        setScoreRange([0, 110]);
         setVramRange([0, maxVRAM]);
         setSelectedFamilies([]);
         setSelectedGpus([]);
@@ -220,7 +220,7 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
                 </div>
 
                 <SidebarSection title="Total Score">
-                    <RangeFilter min={0} max={100} value={scoreRange} onChange={setScoreRange} />
+                    <RangeFilter min={0} max={110} value={scoreRange} onChange={setScoreRange} />
                 </SidebarSection>
 
                 <SidebarSection title="VRAM (MB)">
