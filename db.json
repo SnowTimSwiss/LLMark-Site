@@ -1,5 +1,106 @@
 [
   {
+    "model": "llama3.1:latest",
+    "benchmark_version": "v2",
+    "date": "2026-01-18T16:36:40.078345",
+    "judge_model": "qwen2.5:14b-instruct",
+    "model_details": {
+      "context_length": 131072,
+      "family": "llama",
+      "parameter_size": "8.0B",
+      "quantization": "Q4_K_M"
+    },
+    "filename": "llama31-latest",
+    "benchmarks": [
+      {
+        "name": "Velocity/Speed",
+        "score": 63.97,
+        "comment": "63.97 tokens/sec",
+        "issues": []
+      },
+      {
+        "name": "English Quality",
+        "score": 7.67,
+        "comment": "Good performance. Issue (B2): Missing key data points such as speci...",
+        "issues": []
+      },
+      {
+        "name": "German Quality",
+        "score": 8,
+        "comment": "Good performance. Issue (C1): No facts provided in the prompt to ve...",
+        "issues": []
+      },
+      {
+        "name": "Fact Checking",
+        "score": 6.33,
+        "comment": "Mixed results. Issue (D1): Incorrectly marked fact 3 as correct",
+        "issues": []
+      },
+      {
+        "name": "Context Extraction",
+        "score": 8,
+        "comment": "Good performance. Issue (E1): No specific deadline mentioned for th...",
+        "issues": []
+      },
+      {
+        "name": "Logic & Planning",
+        "score": 6.67,
+        "comment": "Mixed results. Issue (F1): Math is on Monday in the model answer...",
+        "issues": []
+      },
+      {
+        "name": "Creative Writing",
+        "score": 6.67,
+        "comment": "Mixed results. Issue (G1): Missing required terms",
+        "issues": []
+      },
+      {
+        "name": "Technical Explanation",
+        "score": 8,
+        "comment": "Good performance. Issue (H1): The analogy of toy cars might be slig...",
+        "issues": []
+      },
+      {
+        "name": "Python Coding",
+        "score": 8.33,
+        "comment": "Good performance. Issue (I2): The test suite does not check for the... Strong: Basic Password Validation",
+        "issues": []
+      },
+      {
+        "name": "Customer Support",
+        "score": 8.67,
+        "comment": "Good performance. Issue (J1): No concrete case number provided in t... Strong: Billing Issue - Angry Customer",
+        "issues": []
+      },
+      {
+        "name": "Knowledge",
+        "score": 9.33,
+        "comment": "Excellent performance. Strong: General Knowledge Quiz",
+        "issues": []
+      },
+      {
+        "name": "Uncertainty Handling",
+        "score": 9,
+        "comment": "Excellent performance. Strong: Conflicting Information",
+        "issues": []
+      }
+    ],
+    "metrics": {
+      "peak_vram_mb": 0,
+      "avg_vram_mb": 0
+    },
+    "gpu_data": [
+      {
+        "gpu": "AMD Radeon RX 6700 XT",
+        "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
+        "peak_vram": 0,
+        "avg_vram": 0,
+        "speed": 63.97
+      }
+    ],
+    "total_score": 87
+  },
+  {
     "model": "phi4-mini:latest",
     "benchmark_version": "v2",
     "date": "2026-01-18T15:58:24.891691",
