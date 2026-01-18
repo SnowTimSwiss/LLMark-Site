@@ -19,7 +19,8 @@ const Compare = ({ data, selectedIds, onRemove }) => {
         <div style={{ overflowX: 'auto', paddingBottom: '1rem' }}>
             <div style={{ display: 'flex', gap: '1rem', minWidth: 'min-content' }}>
                 {/* Labels Column */}
-                <div style={{ minWidth: '200px', flexShrink: 0, marginTop: '160px' }}>
+                <div style={{ minWidth: '200px', flexShrink: 0 }}>
+                    <div style={{ height: '144px' }}></div> {/* Spacer for model headers */}
                     <div className="compare-row-header">Total Score</div>
                     <div className="compare-row-header">Peak VRAM</div>
                     <div className="compare-row-header">Avg VRAM</div>
@@ -37,14 +38,14 @@ const Compare = ({ data, selectedIds, onRemove }) => {
                 {/* Model Columns */}
                 {models.map(model => (
                     <div key={model.filename} className="glass-panel" style={{ minWidth: '300px', padding: 0, overflow: 'hidden' }}>
-                        <div style={{ padding: '1rem', borderBottom: '1px solid var(--border)', position: 'relative' }}>
+                        <div style={{ padding: '1rem', borderBottom: '1px solid var(--border)', position: 'relative', height: '144px', display: 'flex', flexDirection: 'column', justifyContent: 'center', boxSizing: 'border-box' }}>
                             <button
                                 onClick={() => onRemove(model.filename)}
                                 style={{ position: 'absolute', top: 10, right: 10, background: 'none', border: 'none', color: 'var(--text-secondary)', cursor: 'pointer' }}
                             >
                                 <X size={18} />
                             </button>
-                            <h3 style={{ margin: '0 0 0.5rem 0', paddingRight: '1.5rem' }}>{model.model}</h3>
+                            <h3 style={{ margin: '0 0 0.5rem 0', paddingRight: '1.5rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{model.model}</h3>
                             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{new Date(model.date).toLocaleDateString()}</div>
                         </div>
 
@@ -61,7 +62,9 @@ const Compare = ({ data, selectedIds, onRemove }) => {
                             <div key={i} className="compare-row" style={{ height: 'auto', minHeight: '60px', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderTop: '1px solid var(--border)' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginBottom: '0.2rem' }}>
                                     <span style={{ fontWeight: 500 }}>{b.score}/10</span>
-                                    <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{b.details?.tokens_per_sec} t/s</span>
+                                    {b.details?.tokens_per_sec && (
+                                        <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{b.details.tokens_per_sec} t/s</span>
+                                    )}
                                 </div>
                                 {b.issues?.length > 0 && (
                                     <div style={{ fontSize: '0.75rem', color: 'var(--danger)', display: 'flex', alignItems: 'center', gap: 4 }}>
