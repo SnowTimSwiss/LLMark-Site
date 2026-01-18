@@ -88,10 +88,6 @@ const ModelDetails = ({ data }) => {
                                 </ul>
                             </div>
                         )}
-
-                        <div style={{ marginTop: '1rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                            Speed: {bench.details?.tokens_per_sec} t/s on {system?.gpu} | Time: {bench.details?.total_time_s}s
-                        </div>
                     </div>
                 ))}
             </div>

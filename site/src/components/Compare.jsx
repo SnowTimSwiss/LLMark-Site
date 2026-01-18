@@ -57,14 +57,11 @@ const Compare = ({ data, selectedIds, onRemove }) => {
                         <div className="compare-row">{model.model_details?.parameter_size || '-'}</div>
                         <div className="compare-row">{model.model_details?.quantization || '-'}</div>
                         <div className="compare-row" style={{ fontSize: '0.8rem' }}>{model.judge_model}</div>
-
                         {model.benchmarks?.map((b, i) => (
                             <div key={i} className="compare-row" style={{ height: 'auto', minHeight: '60px', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderTop: '1px solid var(--border)' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginBottom: '0.2rem' }}>
                                     <span style={{ fontWeight: 500 }}>{b.score}/10</span>
-                                    {b.details?.tokens_per_sec && (
-                                        <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{b.details.tokens_per_sec} t/s</span>
-                                    )}
+
                                 </div>
                                 {b.issues?.length > 0 && (
                                     <div style={{ fontSize: '0.75rem', color: 'var(--danger)', display: 'flex', alignItems: 'center', gap: 4 }}>
