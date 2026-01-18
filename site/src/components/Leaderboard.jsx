@@ -5,6 +5,15 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
     const [sortConfig, setSortConfig] = useState({ key: 'total_score', direction: 'desc' });
     const [filterText, setFilterText] = useState('');
 
+    const getPeakVram = (item) => {
+        if (item.metrics?.peak_vram_mb) return item.metrics.peak_vram_mb;
+        if (item.benchmarks && item.benchmarks.length > 0) {
+            const vrams = item.benchmarks.map(b => b.metrics?.peak_vram_mb).filter(v => v);
+            return vrams.length > 0 ? Math.max(...vrams) : 0;
+        }
+        return 0;
+    };
+
     const sortedData = [...data]
         .filter(item =>
             item.model.toLowerCase().includes(filterText.toLowerCase()) ||
@@ -22,6 +31,10 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
                     aValue = aValue ? aValue[k] : 0;
                     bValue = bValue ? bValue[k] : 0;
                 });
+            }
+            if (sortConfig.key === 'metrics.peak_vram_mb') {
+                aValue = getPeakVram(a);
+                bValue = getPeakVram(b);
             }
             if (aValue < bValue) return sortConfig.direction === 'asc' ? -1 : 1;
             if (aValue > bValue) return sortConfig.direction === 'asc' ? 1 : -1;
@@ -101,7 +114,7 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
                                     </span>
                                 </td>
                                 <td style={{ padding: '1rem' }}>
-                                    {row.metrics?.peak_vram_mb ? row.metrics.peak_vram_mb.toFixed(0) : '-'}
+                                    {getPeakVram(row) > 0 ? getPeakVram(row).toFixed(0) : '-'}
                                 </td>
                                 <td style={{ padding: '1rem' }}>{row.model_details?.parameter_size || '-'}</td>
                                 <td style={{ padding: '1rem' }}>

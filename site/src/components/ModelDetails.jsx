@@ -6,6 +6,10 @@ const ModelDetails = ({ data }) => {
 
     const { model, total_score, date, system, model_details, benchmarks, metrics, judge_model } = data;
 
+    // Fallback VRAM calculation if metrics are missing from root
+    const peakVram = metrics?.peak_vram_mb || (benchmarks ? Math.max(...benchmarks.map(b => b.metrics?.peak_vram_mb).filter(v => v)) : 0);
+    const avgVram = metrics?.avg_vram_mb || (benchmarks ? (benchmarks.reduce((acc, b) => acc + (b.metrics?.avg_vram_mb || 0), 0) / benchmarks.length) : 0);
+
     return (
         <div className="model-details">
             <Link to="/" className="btn btn-secondary" style={{ marginBottom: '1rem' }}>
@@ -35,8 +39,8 @@ const ModelDetails = ({ data }) => {
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--accent)' }}>
                             <HardDrive size={18} /> <strong>VRAM Usage</strong>
                         </div>
-                        <div>Peak: {metrics?.peak_vram_mb?.toFixed(0) || '-'} MB</div>
-                        <div>Avg: {metrics?.avg_vram_mb?.toFixed(0) || '-'} MB</div>
+                        <div>Peak: {peakVram > 0 ? peakVram.toFixed(0) : '-'} MB</div>
+                        <div>Avg: {avgVram > 0 ? avgVram.toFixed(0) : '-'} MB</div>
                     </div>
                     <div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--accent)' }}>
@@ -44,7 +48,7 @@ const ModelDetails = ({ data }) => {
                         </div>
                         <div>{model_details?.context_length || 'Unknown'}</div>
                         <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
-                            Note: VRAM usage and performance depends on context window size. Tested with: {model_details?.context_length || 'N/A'}. It might have been higher if the context window was larger.
+                            Tested with: {model_details?.context_length || 'N/A'}. Note: VRAM usage and performance depends on context window size. It might have been higher if the context window was larger.
                         </div>
                     </div>
                     <div>
