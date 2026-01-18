@@ -117,6 +117,119 @@
     "total_score": 67
   },
   {
+    "model": "gemma3:12b",
+    "benchmark_version": "v1",
+    "date": "2026-01-18T13:05:23.773161",
+    "judge_model": "qwen2.5:14b-instruct",
+    "model_details": {
+      "context_length": null,
+      "family": "gemma3",
+      "parameter_size": "12.2B",
+      "quantization": "Q4_K_M"
+    },
+    "filename": "gemma3-12b",
+    "benchmarks": [
+      {
+        "name": "Velocity/Speed",
+        "score": 34.62,
+        "comment": "34.62 tokens/sec",
+        "issues": []
+      },
+      {
+        "name": "English Quality",
+        "score": 8,
+        "comment": "The response is well-structured and professional, but lacks context-specific information due to missing facts in the prompt.",
+        "issues": [
+          "No facts provided in the prompt to include",
+          "Lack of specific product/service details can make the email less effective"
+        ]
+      },
+      {
+        "name": "German Quality",
+        "score": 7,
+        "comment": "The response is well-formatted and adheres to formal German language standards. However, it lacks verification against factual information due to none being provided in the prompt, and there are minor omissions like specifying the bank's name and exact fee amounts.",
+        "issues": [
+          "No facts provided in the prompt to verify inclusion",
+          "Missing specific details such as bank name and exact amount of fees"
+        ]
+      },
+      {
+        "name": "Fact Checking",
+        "score": 9,
+        "comment": "The response is nearly perfect with correct judgments and clear reasoning for each fact. The only deduction is due to minor ambiguity in explaining why water boils at a higher temperature under increased pressure.",
+        "issues": [
+          "Water boils at a higher temperature under increased pressure; the statement should clarify that it requires more energy to boil water under high pressure, not just mention 'higher' temperature without context."
+        ]
+      },
+      {
+        "name": "Context Extraction",
+        "score": 6,
+        "comment": "The response attempts to provide a structured breakdown and extracted facts but fails due to lack of input data. The score reflects an attempt at addressing the task, but it cannot be evaluated accurately without proper context.",
+        "issues": [
+          "Missing facts as the provided model answer does not align with a given meeting transcript (facts section is empty)",
+          "Poor structure since there's no actual transcript to extract information from"
+        ]
+      },
+      {
+        "name": "Logic/Timetable",
+        "score": 2,
+        "comment": "The response lacks factual basis and clear constraints, making it impossible to accurately evaluate against given criteria. The provided solution assumes many unspecified rules leading to a non-compliant schedule.",
+        "issues": [
+          "No facts provided to base the timetable on",
+          "Constraints not clearly defined in the model answer",
+          "Timetable does not align with undefined constraints"
+        ]
+      },
+      {
+        "name": "Creative Writing",
+        "score": 8,
+        "comment": "The piece captures the cyberpunk-noir atmosphere well and has a good writing style. However, it misses including two specific items and the ending, while intriguing, lacks a strong cliffhanger.",
+        "issues": [
+          "Missing required terms (neon umbrella, coffee machine)",
+          "Cliffhanger could be more dramatic"
+        ]
+      },
+      {
+        "name": "ELI5 Complexity",
+        "score": 8,
+        "comment": "The answer is very understandable for an 8-year-old and uses a good analogy. However, it slightly misrepresents how quantum entanglement works, leading to a deduction in scientific accuracy.",
+        "issues": [
+          "The explanation could be slightly more accurate in terms of scientific simplification. Quantum entanglement does not imply that particles are 'linked' like magic socks; rather, their states are interconnected such that the state of one instantly influences the other's state upon measurement, regardless of distance."
+        ]
+      },
+      {
+        "name": "Python Coding",
+        "score": 9,
+        "comment": "The solution is robust and meets all the criteria with minor room for improvement in the special character validation.",
+        "issues": [
+          "The special character regex could be more inclusive to cover a wider range of special characters beyond !@#$%^&*"
+        ]
+      },
+      {
+        "name": "Customer Support",
+        "score": 9,
+        "comment": "The response is empathetic and offers concrete steps to resolve the issue. It avoids hollow phrases and maintains a professional tone, but lacks detail on covering emergency expenses.",
+        "issues": [
+          "No specific mention of how the airline will cover emergency purchase costs"
+        ]
+      }
+    ],
+    "metrics": {
+      "peak_vram_mb": 10646.57,
+      "avg_vram_mb": 9539.422
+    },
+    "gpu_data": [
+      {
+        "gpu": "AMD Radeon RX 6700 XT",
+        "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
+        "peak_vram": 10646.57,
+        "avg_vram": 9539.422,
+        "speed": 34.62
+      }
+    ],
+    "total_score": 66
+  },
+  {
     "model": "llama3.1:8b",
     "benchmark_version": "v1",
     "date": "2026-01-18T13:05:23.773161",
