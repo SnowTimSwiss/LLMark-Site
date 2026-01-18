@@ -49,6 +49,7 @@ files.forEach(file => {
         if (!modelEntry.dataByVersion[versionNum]) {
             modelEntry.dataByVersion[versionNum] = [];
         }
+        data.filename = file; // Ensure original filename is kept for reference
         modelEntry.dataByVersion[versionNum].push(data);
     } catch (err) {
         console.error(`Error parsing ${file}:`, err);
@@ -61,6 +62,9 @@ modelsMap.forEach((modelEntry, modelName) => {
     const latestDataList = modelEntry.dataByVersion[modelEntry.latestVersion];
     if (!latestDataList || latestDataList.length === 0) return;
 
+    // Use a sanitized model name as the stable ID for routing
+    const modelId = modelName.replace(/[:\/]/g, '-').replace(/[^a-z0-9-_]/gi, '').toLowerCase();
+
     // Use the first entry as a template for metadata
     const template = latestDataList[0];
     const aggregated = {
@@ -69,7 +73,7 @@ modelsMap.forEach((modelEntry, modelName) => {
         date: template.date,
         judge_model: template.judge_model,
         model_details: template.model_details,
-        filename: template.filename, // Keep for routing, though it's now an aggregate
+        filename: modelId, // Stable routing ID
         benchmarks: [],
         metrics: { peak_vram_mb: 0, avg_vram_mb: 0 },
         gpu_data: [], // [{ gpu: string, peak_vram: number, avg_vram: number, speed: number }]
