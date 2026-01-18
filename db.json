@@ -117,6 +117,121 @@
     "total_score": 67
   },
   {
+    "model": "llama3.1:8b",
+    "benchmark_version": "v1",
+    "date": "2026-01-18T13:05:23.773161",
+    "judge_model": "qwen2.5:14b-instruct",
+    "model_details": {
+      "context_length": 131072,
+      "family": "llama",
+      "parameter_size": "8.0B",
+      "quantization": "Q4_K_M"
+    },
+    "filename": "llama31-8b",
+    "benchmarks": [
+      {
+        "name": "Velocity/Speed",
+        "score": 59.09,
+        "comment": "59.09 tokens/sec",
+        "issues": []
+      },
+      {
+        "name": "English Quality",
+        "score": 8,
+        "comment": "The response is well-structured and professional, with clear deadlines and payment instructions. However, it lacks context-specific facts mentioned in the evaluation criteria.",
+        "issues": [
+          "No facts provided in the prompt to verify inclusion",
+          "The email does not mention a specific consequence for non-payment beyond late fees"
+        ]
+      },
+      {
+        "name": "German Quality",
+        "score": 6,
+        "comment": "The response is formal and includes most elements required for a German payment reminder, but it lacks factual content as per the instructions. Additionally, there are inconsistencies regarding the payment grace period and incorrect use of Swiss Francs (CHF) instead of Euros (EUR).",
+        "issues": [
+          "Missing facts section in the model answer",
+          "Incorrect currency (CHF instead of EUR)",
+          "Inconsistent payment grace period mentioned twice with different conditions"
+        ]
+      },
+      {
+        "name": "Fact Checking",
+        "score": 8,
+        "comment": "The response correctly evaluates most facts but includes minor inaccuracies and unnecessary explanations.",
+        "issues": [
+          "Fact 3 is incorrectly labeled as false. The statement should be corrected to reflect that water boils at a higher temperature under higher atmospheric pressure.",
+          "Fact 8 contains an unnecessary clarification about common misunderstanding, which isn't required for the task."
+        ]
+      },
+      {
+        "name": "Context Extraction",
+        "score": 7,
+        "comment": "The response is well-organized but lacks a clear 'Facts' section as per the task requirements. The information provided is mostly accurate, but it could be better structured to clearly separate tasks, responsibilities, deadlines, and open issues.",
+        "issues": [
+          "Missing facts section in the model answer",
+          "Unclear structure for open issues and next meeting time"
+        ]
+      },
+      {
+        "name": "Logic/Timetable",
+        "score": 2,
+        "comment": "The submission is rated very low as it attempts to provide a solution without any specified constraints or facts. The timetable presented contradicts the lack of information and cannot be evaluated against undefined criteria.",
+        "issues": [
+          "No facts provided to create a timetable.",
+          "The model answer does not align with any given constraints since no specific requirements were stated in the facts section."
+        ]
+      },
+      {
+        "name": "Creative Writing",
+        "score": 8,
+        "comment": "The piece captures a strong cyberpunk-noir atmosphere and includes a compelling cliffhanger ending. The narrative flows well, though it lacks explicit adherence to any specified terms or elements that might have been required.",
+        "issues": [
+          "No specific mention of required terms if any were provided in the prompt",
+          "The writing style is good but could be more polished"
+        ]
+      },
+      {
+        "name": "ELI5 Complexity",
+        "score": 8,
+        "comment": "The answer uses an engaging and simple analogy that most children can understand, correctly simplifies the concept without major scientific errors, and maintains an appropriate tone. However, it slightly misrepresents how quantum entanglement works by implying instantaneous action at a distance which is not accurate.",
+        "issues": [
+          "The explanation could be more precise in avoiding the implication of faster-than-light communication which is a common misconception about entanglement"
+        ]
+      },
+      {
+        "name": "Python Coding",
+        "score": 9,
+        "comment": "The solution meets all criteria effectively with a minor suggestion for improvement in handling special characters.",
+        "issues": [
+          "The special characters string could be more dynamic and comprehensive to cover all possible special characters. The function name 'is_valid_password' is clear but could be more descriptive if the context of its use is broader than just password validation."
+        ]
+      },
+      {
+        "name": "Customer Support",
+        "score": 8,
+        "comment": "The response is empathetic and professional, offering clear compensation. However, it lacks detailed immediate actions to assist the customer beyond general statements.",
+        "issues": [
+          "No concrete next steps for immediate assistance other than contacting airport authorities",
+          "Lack of specific details on how emergency purchases will be facilitated"
+        ]
+      }
+    ],
+    "metrics": {
+      "peak_vram_mb": 7443.07,
+      "avg_vram_mb": 6678.493
+    },
+    "gpu_data": [
+      {
+        "gpu": "AMD Radeon RX 6700 XT",
+        "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
+        "peak_vram": 7443.07,
+        "avg_vram": 6678.493,
+        "speed": 59.09
+      }
+    ],
+    "total_score": 64
+  },
+  {
     "model": "phi4-mini:latest",
     "benchmark_version": "v1",
     "date": "2026-01-18T10:55:45.544530",
