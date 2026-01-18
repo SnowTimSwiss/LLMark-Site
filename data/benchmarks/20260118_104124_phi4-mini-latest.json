@@ -1,0 +1,174 @@
+{
+  "benchmark_version": "v1",
+  "benchmarks": [
+    {
+      "comment": "109.7 tokens/sec",
+      "description": "Velocity/Speed",
+      "details": {
+        "tokens": 65,
+        "tokens_per_sec": 109.7,
+        "total_time_s": 0.872
+      },
+      "metrics": {
+        "avg_vram_mb": 4194.25,
+        "gpu_detected": true,
+        "peak_vram_mb": 5559.16
+      },
+      "name": "A",
+      "raw_response_preview": "One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Nineteen, Twenty, Twenty-One, Twenty-Two, and so on up to One Thou",
+      "score": 109.7
+    },
+    {
+      "comment": "The email has a professional tone but contains factual errors, lacks an explicit deadline in the subject line, and includes redundant wording. Needs improvement for clarity and accuracy.",
+      "issues": [
+        "Incorrect invoice number format (INV-INV-002014 instead of INV-2024-019)",
+        "Missing explicit deadline in the subject line",
+        "Unnecessary repetition and redundancy in text"
+      ],
+      "metrics": {
+        "avg_vram_mb": 5549.32,
+        "gpu_detected": true,
+        "peak_vram_mb": 5554.35
+      },
+      "name": "B",
+      "score": 6
+    },
+    {
+      "comment": "The letter is formal and adheres to German business communication standards, but lacks specificity regarding dates and additional costs. Points deducted due to missing details in the prompt.",
+      "issues": [
+        "No facts provided in the prompt to verify inclusion",
+        "Missing specific date for payment reminder",
+        "Lack of clear mention of additional costs beyond 'Mahngebühren'"
+      ],
+      "metrics": {
+        "avg_vram_mb": 5551.47,
+        "gpu_detected": true,
+        "peak_vram_mb": 5558.91
+      },
+      "name": "C",
+      "score": 6
+    },
+    {
+      "comment": "The response contains several factual errors and misconceptions, particularly in scientific facts and geographical details. The evaluation criteria were not fully met due to these inaccuracies.",
+      "issues": [
+        "Incorrect statement about boiling point under higher atmospheric pressure",
+        "False claim that Mount Everest is not the highest mountain",
+        "Misleading information regarding Makalu's height"
+      ],
+      "metrics": {
+        "avg_vram_mb": 5553.02,
+        "gpu_detected": true,
+        "peak_vram_mb": 5562.41
+      },
+      "name": "D",
+      "score": 6
+    },
+    {
+      "comment": "The response has a good structure and covers most responsibilities and deadlines, but lacks specific details about the resolution status post-vacation and potential impacts on future tasks.",
+      "issues": [
+        "Missing facts regarding the resolution status after Tom's vacation",
+        "Unclear if there are further delays due to unresolved server errors impacting subsequent meetings"
+      ],
+      "metrics": {
+        "avg_vram_mb": 5547.95,
+        "gpu_detected": true,
+        "peak_vram_mb": 5553.38
+      },
+      "name": "E",
+      "score": 6
+    },
+    {
+      "comment": "The response is largely irrelevant as no facts were given, leading to an incomplete and contradictory model answer.",
+      "issues": [
+        "No facts provided to base the timetable on",
+        "The model answer contradicts itself regarding room availability and timing for German class",
+        "Missing constraints satisfaction"
+      ],
+      "metrics": {
+        "avg_vram_mb": 5550.05,
+        "gpu_detected": true,
+        "peak_vram_mb": 5550.05
+      },
+      "name": "F",
+      "score": 2
+    },
+    {
+      "comment": "The submission effectively captures the essence of a cyberpunk-noir setting with rich imagery and atmospheric descriptions. It includes all necessary elements to convey a compelling narrative but lacks specific facts/truths as none were provided in the instructions, and occasionally uses overly complex sentence structures.",
+      "issues": [
+        "The story does not include any specific facts/truths provided in the benchmark instructions as there were none listed.",
+        "While the writing style is engaging and fits well within the cyberpunk-noir genre, it occasionally veers into overly complex or convoluted sentences that might be challenging for some readers."
+      ],
+      "metrics": {
+        "avg_vram_mb": 5551.43,
+        "gpu_detected": true,
+        "peak_vram_mb": 5560.91
+      },
+      "name": "G",
+      "score": 8
+    },
+    {
+      "comment": "The answer uses a clear and engaging analogy with magic marbles, making quantum entanglement understandable for children. However, it slightly misrepresents the nature of quantum states as 'spinning up', which could be misleading.",
+      "issues": [
+        "The explanation could be slightly more accurate in terms of scientific simplification; the concept of 'spinning up' might confuse an 8-year-old without further clarification"
+      ],
+      "metrics": {
+        "avg_vram_mb": 5525.7,
+        "gpu_detected": true,
+        "peak_vram_mb": 5525.7
+      },
+      "name": "H",
+      "score": 8
+    },
+    {
+      "comment": "The code has several logical errors and missing criteria checks. The score reflects that it partially meets some requirements but fails to validate passwords correctly.",
+      "issues": [
+        "Incorrect logic in checking for the absence of spaces and presence of digits.",
+        "Missing criteria check for at least one uppercase letter and one special character.",
+        "Logical error in all condition which incorrectly checks for non-alphabetic characters instead of ensuring a mix of alphabets, numbers, and symbols.",
+        "Poor naming convention with underscore prefix in function call inside the main function."
+      ],
+      "metrics": {
+        "avg_vram_mb": 5548.57,
+        "gpu_detected": true,
+        "peak_vram_mb": 5553.37
+      },
+      "name": "I",
+      "score": 6
+    },
+    {
+      "comment": "The response is empathetic and offers concrete steps, but it includes some potentially hollow phrases and lacks specifics about compensation arrangements.",
+      "issues": [
+        "Potential use of hollow phrases like 'joyous occasion' which may not resonate with the customer's current situation",
+        "Lack of specific details on how compensation will be handled"
+      ],
+      "metrics": {
+        "avg_vram_mb": 5555.88,
+        "gpu_detected": true,
+        "peak_vram_mb": 5558.91
+      },
+      "name": "J",
+      "score": 8
+    }
+  ],
+  "date": "2026-01-18T10:39:03.030601",
+  "json_format_version": "v1",
+  "judge_model": "qwen2.5:14b-instruct",
+  "model": "phi4-mini:latest",
+  "model_details": {
+    "context_length": null,
+    "family": "phi3",
+    "parameter_size": "3.8B",
+    "quantization": "Q4_K_M"
+  },
+  "model_estimated_vram_usage_mb": 4194.25,
+  "system": {
+    "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
+    "date_utc": "2026-01-18T10:39:03.030601",
+    "gpu": "AMD Radeon RX 6700 XT",
+    "os": "Windows 11",
+    "ram_total_gb": 31.84,
+    "vram_total_mb": 12272.0,
+    "vram_used_mb": 1623.77
+  },
+  "total_score": 56
+}
