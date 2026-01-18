@@ -167,6 +167,10 @@
       "vram_used_mb": 1588.23
     },
     "total_score": 57,
-    "filename": "20260117_161906_phi4-mini-latest.json"
+    "filename": "20260117_161906_phi4-mini-latest.json",
+    "metrics": {
+      "peak_vram_mb": 5593.93,
+      "avg_vram_mb": 5411.478
+    }
   }
 ]
