@@ -1,44 +1,36 @@
 [
   {
+    "model": "phi4-mini:latest",
     "benchmark_version": "v1",
+    "date": "2026-01-18T10:55:45.544530",
+    "judge_model": "qwen2.5:14b-instruct",
+    "model_details": {
+      "context_length": null,
+      "family": "phi3",
+      "parameter_size": "3.8B",
+      "quantization": "Q4_K_M"
+    },
     "benchmarks": [
       {
-        "comment": "108.19 tokens/sec",
-        "description": "Velocity/Speed",
-        "details": {
-          "tokens": 69,
-          "tokens_per_sec": 108.19,
-          "total_time_s": 0.974
-        },
-        "id": "A",
-        "metrics": {
-          "avg_vram_mb": null,
-          "gpu_detected": null,
-          "peak_vram_mb": null
-        },
         "name": "Velocity/Speed",
-        "raw_response_preview": "One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Nineteen, Twenty-One, twenty-two, ... Thousand one hundred and nin",
-        "score": 108.19
+        "score": 108.19,
+        "comment": "108.19 tokens/sec",
+        "issues": []
       },
       {
+        "name": "English Quality",
+        "score": 7,
         "comment": "The email maintains a professional tone and includes an appropriate subject line. However, it contains factual errors and lacks clarity regarding the exact payment deadline.",
-        "id": "B",
         "issues": [
           "Incorrect invoice number format (INV-INV-2024-019 instead of INV-2024-019)",
           "Missing explicit payment deadline",
           "Unnecessary repetition in the last paragraph"
-        ],
-        "metrics": {
-          "avg_vram_mb": 5572.36,
-          "gpu_detected": true,
-          "peak_vram_mb": 5577.65
-        },
-        "name": "English Quality",
-        "score": 7
+        ]
       },
       {
+        "name": "German Quality",
+        "score": 4,
         "comment": "The letter has some formal elements but contains several factual and grammatical errors, making it unsuitable for a professional setting.",
-        "id": "C",
         "issues": [
           "Missing facts section",
           "Incorrect currency and bank account format",
@@ -46,148 +38,87 @@
           "Informal language in places (e.g., 'Es wird Ihnen klar sein')",
           "Unclear deadline reference ('15. Februar 2024' without context)",
           "Grammar errors"
-        ],
-        "metrics": {
-          "avg_vram_mb": 5579.81,
-          "gpu_detected": true,
-          "peak_vram_mb": 5581.96
-        },
-        "name": "German Quality",
-        "score": 4
+        ]
       },
       {
+        "name": "Fact Checking",
+        "score": 1,
         "comment": "JSON parse error, minimal score assigned",
-        "id": "D",
         "issues": [
           "Judge JSON parse error: Expecting ',' delimiter: line 3 column 624 (char 639)",
           "{\n  \"score\": 4,\n  \"issues\": [\"Incorrect judgment on fact 2 (Berlin Wall fell due to political changes in 1989 not related to WWII), fact 5 (Switzerland is not a member of the EU, it has special agreem"
-        ],
-        "metrics": {
-          "avg_vram_mb": 5578.77,
-          "gpu_detected": true,
-          "peak_vram_mb": 5592.02
-        },
-        "name": "Fact Checking",
-        "score": 1
+        ]
       },
       {
+        "name": "Context Extraction",
+        "score": 2,
         "comment": "The response fails to extract any facts from an assumed context, lacks proper structure for information extraction tasks, and omits necessary details such as deadlines and responsibilities.",
-        "id": "E",
         "issues": [
           "No facts provided in the model answer",
           "Poor structure and organization as it does not follow a clear information extraction format",
           "Missing deadlines and responsibilities"
-        ],
-        "metrics": {
-          "avg_vram_mb": 5572.59,
-          "gpu_detected": true,
-          "peak_vram_mb": 5572.59
-        },
-        "name": "Context Extraction",
-        "score": 2
+        ]
       },
       {
+        "name": "Logic/Timetable",
+        "score": 4,
         "comment": "The response lacks the required facts and provides an incomplete, contradictory timetable. The score reflects significant issues with meeting the task requirements.",
-        "id": "F",
         "issues": [
           "No facts provided to base the timetable on.",
           "The model answer does not provide a complete and detailed schedule for all days and classes as required.",
           "There are contradictions in the proposed solution, such as assigning Meier to teach German to class 2B when it's only specified that he teaches from Tuesday through Thursday but no specific times or rooms are given.",
           "Fails to account for Schmidt teaching Sports on a specific day without providing necessary details."
-        ],
-        "metrics": {
-          "avg_vram_mb": 5580.16,
-          "gpu_detected": true,
-          "peak_vram_mb": 5589.51
-        },
-        "name": "Logic/Timetable",
-        "score": 4
+        ]
       },
       {
+        "name": "Creative Writing",
+        "score": 8,
         "comment": "The submission effectively captures the cyberpunk-noir atmosphere with vivid imagery and a compelling storyline. It includes all required elements and maintains a dramatic cliffhanger ending, but lacks some depth due to lower word count and minor writing issues.",
-        "id": "G",
         "issues": [
           "The word count is slightly lower than expected for a full narrative (should be around 500 words), which might affect the depth of the story and development of characters.",
           "Minor grammatical errors and inconsistencies in tense usage."
-        ],
-        "metrics": {
-          "avg_vram_mb": 5571.92,
-          "gpu_detected": true,
-          "peak_vram_mb": 5584.2
-        },
-        "name": "Creative Writing",
-        "score": 8
+        ]
       },
       {
+        "name": "ELI5 Complexity",
+        "score": 8,
         "comment": "The answer is very understandable for an 8-year-old with a good analogy used. However, there's room for improvement in scientific precision and avoiding misleading implications about how entanglement works.",
-        "id": "H",
         "issues": [
           "The explanation could be more precise in avoiding the implication that quantum entanglement involves a direct signal between particles (no 'feeling excited'), and it might benefit from mentioning that entangled particles are not like gloves but rather their properties are linked in such a way that measuring one instantly determines the state of the other, regardless of distance."
-        ],
-        "metrics": {
-          "avg_vram_mb": 5577.71,
-          "gpu_detected": true,
-          "peak_vram_mb": 5577.71
-        },
-        "name": "ELI5 Complexity",
-        "score": 8
+        ]
       },
       {
+        "name": "Python Coding",
+        "score": 9,
         "comment": "The solution is well-structured with correct logic for checking password validity. It includes all necessary checks as per the given criteria, has an informative docstring, and provides an example call. The minor issue is in the clarity of the example output within the docstring.",
-        "id": "I",
         "issues": [
           "The example call in the docstring should return a boolean value but instead mentions 'True if the password meets all criteria, False otherwise.' which is redundant and not clear without running the function."
-        ],
-        "metrics": {
-          "avg_vram_mb": 5564.76,
-          "gpu_detected": true,
-          "peak_vram_mb": 5568.1
-        },
-        "name": "Python Coding",
-        "score": 9
+        ]
       },
       {
+        "name": "Customer Support",
+        "score": 7,
         "comment": "The response is empathetic but includes some standard phrases and lacks concrete steps for tracking the lost luggage.",
-        "id": "J",
         "issues": [
           "Uses hollow phrases like 'upsetting' and 'beautiful occasion'",
           "Lacks specific details on how to track the suitcase",
           "Includes unnecessary information about a new suit"
-        ],
-        "metrics": {
-          "avg_vram_mb": 5566.37,
-          "gpu_detected": true,
-          "peak_vram_mb": 5571.18
-        },
-        "name": "Customer Support",
-        "score": 7
+        ]
       }
     ],
-    "date": "2026-01-18T10:55:45.544530",
-    "json_format_version": "v1",
-    "judge_model": "qwen2.5:14b-instruct",
-    "model": "phi4-mini:latest",
-    "model_details": {
-      "context_length": null,
-      "family": "phi3",
-      "parameter_size": "3.8B",
-      "quantization": "Q4_K_M"
-    },
-    "model_estimated_vram_usage_mb": 5699.56,
-    "system": {
-      "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
-      "date_utc": "2026-01-18T10:55:45.544530",
-      "gpu": "AMD Radeon RX 6700 XT",
-      "os": "Windows 11",
-      "ram_total_gb": 31.84,
-      "vram_total_mb": 12272,
-      "vram_used_mb": 11668.26
-    },
-    "total_score": 50,
-    "filename": "20260118_105837_phi4-mini-latest.json",
     "metrics": {
       "peak_vram_mb": 5592.02,
-      "avg_vram_mb": 5573.8277777777785
-    }
+      "avg_vram_mb": 5016.445000000001
+    },
+    "gpu_data": [
+      {
+        "gpu": "AMD Radeon RX 6700 XT",
+        "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
+        "peak_vram": 5592.02,
+        "avg_vram": 5016.445000000001,
+        "speed": 108.19
+      }
+    ],
+    "total_score": 50
   }
 ]
