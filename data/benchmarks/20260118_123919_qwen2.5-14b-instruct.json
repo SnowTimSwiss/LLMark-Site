@@ -1,0 +1,180 @@
+{
+  "benchmark_version": "v1",
+  "benchmarks": [
+    {
+      "comment": "19.65 tokens/sec",
+      "description": "Velocity/Speed",
+      "details": {
+        "tokens": 184,
+        "tokens_per_sec": 19.65,
+        "total_time_s": 9.921
+      },
+      "id": "A",
+      "metrics": {
+        "avg_vram_mb": null,
+        "gpu_detected": null,
+        "peak_vram_mb": null
+      },
+      "name": "Velocity/Speed",
+      "raw_response_preview": "One\nTwo\nThree\nFour\nFive\nSix\nSeven\nEight\nNine\nTen\nEleven\nTwelve\nThirteen\nFourteen\nFifteen\nSixteen\nSeventeen\nEighteen\nNineteen\nTwenty\nTwenty-one\nTwenty-two\nTwenty-three\nTwenty-four\nTwenty-five\nTwenty-si",
+      "score": 19.65
+    },
+    {
+      "comment": "The email is well-structured with a professional tone, clear deadline, and call-to-action. However, there are minor issues with the subject line's clarity and no facts were provided for verification.",
+      "id": "B",
+      "issues": [
+        "No facts provided in the prompt to verify inclusion",
+        "Subject line could be more explicit about urgency and invoice number"
+      ],
+      "metrics": {
+        "avg_vram_mb": 11695.1,
+        "gpu_detected": true,
+        "peak_vram_mb": 11709.35
+      },
+      "name": "English Quality",
+      "score": 8
+    },
+    {
+      "comment": "The model answer has some formal elements but lacks factual content and contains minor inconsistencies in style and locale.",
+      "id": "C",
+      "issues": [
+        "Missing facts section in the model answer",
+        "Incorrect city (Zürich instead of a German city)",
+        "Use of CHF currency which is not consistent with a formal German letter unless specified contextually",
+        "Informal tone regarding 'Mahngebühr nach einem Verzug von 30 Tagen' should be more formal"
+      ],
+      "metrics": {
+        "avg_vram_mb": 11680.43,
+        "gpu_detected": true,
+        "peak_vram_mb": 11693.77
+      },
+      "name": "German Quality",
+      "score": 6
+    },
+    {
+      "comment": "The response correctly evaluates most statements but contains an error in scientific fact (water boiling point). The model's explanation is thorough, though slightly verbose.",
+      "id": "D",
+      "issues": [
+        "Fact 3 is incorrectly stated; water boils at a higher temperature under conditions of high atmospheric pressure.",
+        "The answer format could be more concise and directly address the facts provided without unnecessary introductory text."
+      ],
+      "metrics": {
+        "avg_vram_mb": 11676.91,
+        "gpu_detected": true,
+        "peak_vram_mb": 11689.77
+      },
+      "name": "Fact Checking",
+      "score": 8
+    },
+    {
+      "comment": "The response lacks factual content and clear organization, failing to meet the criteria of extracting at least 10 facts. The summary is more narrative than informative, leading to a score deduction.",
+      "id": "E",
+      "issues": [
+        "Missing facts (no actual facts provided in the model answer)",
+        "Poor structure (the summary does not clearly extract and list all necessary facts from a hypothetical meeting transcript)",
+        "Incomplete information (deadlines for some tasks are not specified, making it unclear when certain actions should be completed)"
+      ],
+      "metrics": {
+        "avg_vram_mb": 11688.72,
+        "gpu_detected": true,
+        "peak_vram_mb": 11701.31
+      },
+      "name": "Context Extraction",
+      "score": 6
+    },
+    {
+      "comment": "The model answer attempts a timetable but lacks critical information from the facts section and introduces assumptions not aligned with the given constraints.",
+      "id": "F",
+      "issues": [
+        "Facts section is empty and does not provide necessary constraints.",
+        "The solution assumes additional rooms (R102) without them being mentioned in the facts.",
+        "No clear indication of how to handle Schmidt's five daily slots for Sports given only one slot per day is provided."
+      ],
+      "metrics": {
+        "avg_vram_mb": 11540.06,
+        "gpu_detected": true,
+        "peak_vram_mb": 11567.59
+      },
+      "name": "Logic/Timetable",
+      "score": 6
+    },
+    {
+      "comment": "The piece captures a cyberpunk-noir atmosphere well and includes an intriguing cliffhanger ending. However, it lacks adherence to any given facts or constraints and the writing style, while competent, misses opportunities for deeper engagement.",
+      "id": "G",
+      "issues": [
+        "No specific facts provided to adhere to in the story",
+        "The writing style is good but could be more engaging"
+      ],
+      "metrics": {
+        "avg_vram_mb": 11522.29,
+        "gpu_detected": true,
+        "peak_vram_mb": 11536.21
+      },
+      "name": "Creative Writing",
+      "score": 8
+    },
+    {
+      "comment": "The answer uses a clear and engaging analogy that an 8-year-old can understand, but it slightly misrepresents the speed at which entanglement occurs.",
+      "id": "H",
+      "issues": [
+        "The explanation could be slightly more accurate in terms of scientific simplification; the concept of 'instantly' changing might imply faster-than-light communication which is not correct according to current understanding of quantum mechanics."
+      ],
+      "metrics": {
+        "avg_vram_mb": 11522.33,
+        "gpu_detected": true,
+        "peak_vram_mb": 11531.69
+      },
+      "name": "ELI5 Complexity",
+      "score": 8
+    },
+    {
+      "comment": "The solution is well-structured and meets all specified requirements except for an incorrect interpretation of the no-spaces validation.",
+      "id": "I",
+      "issues": [
+        "The function incorrectly validates the 'no spaces' criteria. It should check for the absence of any space character rather than matching a pattern that contains spaces."
+      ],
+      "metrics": {
+        "avg_vram_mb": 11522.3,
+        "gpu_detected": true,
+        "peak_vram_mb": 11543.76
+      },
+      "name": "Python Coding",
+      "score": 9
+    },
+    {
+      "comment": "The response is empathetic and professional but lacks specific details on how to immediately assist the customer with their lost luggage.",
+      "id": "J",
+      "issues": [
+        "No concrete next steps for immediate assistance other than offering a local clothing store service which is not detailed"
+      ],
+      "metrics": {
+        "avg_vram_mb": 11521.29,
+        "gpu_detected": true,
+        "peak_vram_mb": 11531.69
+      },
+      "name": "Customer Support",
+      "score": 8
+    }
+  ],
+  "date": "2026-01-18T12:33:35.724944",
+  "json_format_version": "v1",
+  "judge_model": "qwen2.5:14b-instruct",
+  "model": "qwen2.5:14b-instruct",
+  "model_details": {
+    "context_length": null,
+    "family": "qwen2",
+    "parameter_size": "14.8B",
+    "quantization": "Q4_K_M"
+  },
+  "model_estimated_vram_usage_mb": 10849.56,
+  "system": {
+    "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
+    "date_utc": "2026-01-18T12:33:35.724944",
+    "gpu": "AMD Radeon RX 6700 XT",
+    "os": "Windows 11",
+    "ram_total_gb": 31.84,
+    "vram_total_mb": 12272.0,
+    "vram_used_mb": 1869.55
+  },
+  "total_score": 67
+}
