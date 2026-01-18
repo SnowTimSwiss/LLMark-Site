@@ -1,5 +1,122 @@
 [
   {
+    "model": "qwen2.5:14b-instruct",
+    "benchmark_version": "v1",
+    "date": "2026-01-18T12:33:35.724944",
+    "judge_model": "qwen2.5:14b-instruct",
+    "model_details": {
+      "context_length": null,
+      "family": "qwen2",
+      "parameter_size": "14.8B",
+      "quantization": "Q4_K_M"
+    },
+    "filename": "qwen25-14b-instruct",
+    "benchmarks": [
+      {
+        "name": "Velocity/Speed",
+        "score": 19.65,
+        "comment": "19.65 tokens/sec",
+        "issues": []
+      },
+      {
+        "name": "English Quality",
+        "score": 8,
+        "comment": "The email is well-structured with a professional tone, clear deadline, and call-to-action. However, there are minor issues with the subject line's clarity and no facts were provided for verification.",
+        "issues": [
+          "No facts provided in the prompt to verify inclusion",
+          "Subject line could be more explicit about urgency and invoice number"
+        ]
+      },
+      {
+        "name": "German Quality",
+        "score": 6,
+        "comment": "The model answer has some formal elements but lacks factual content and contains minor inconsistencies in style and locale.",
+        "issues": [
+          "Missing facts section in the model answer",
+          "Incorrect city (Zürich instead of a German city)",
+          "Use of CHF currency which is not consistent with a formal German letter unless specified contextually",
+          "Informal tone regarding 'Mahngebühr nach einem Verzug von 30 Tagen' should be more formal"
+        ]
+      },
+      {
+        "name": "Fact Checking",
+        "score": 8,
+        "comment": "The response correctly evaluates most statements but contains an error in scientific fact (water boiling point). The model's explanation is thorough, though slightly verbose.",
+        "issues": [
+          "Fact 3 is incorrectly stated; water boils at a higher temperature under conditions of high atmospheric pressure.",
+          "The answer format could be more concise and directly address the facts provided without unnecessary introductory text."
+        ]
+      },
+      {
+        "name": "Context Extraction",
+        "score": 6,
+        "comment": "The response lacks factual content and clear organization, failing to meet the criteria of extracting at least 10 facts. The summary is more narrative than informative, leading to a score deduction.",
+        "issues": [
+          "Missing facts (no actual facts provided in the model answer)",
+          "Poor structure (the summary does not clearly extract and list all necessary facts from a hypothetical meeting transcript)",
+          "Incomplete information (deadlines for some tasks are not specified, making it unclear when certain actions should be completed)"
+        ]
+      },
+      {
+        "name": "Logic/Timetable",
+        "score": 6,
+        "comment": "The model answer attempts a timetable but lacks critical information from the facts section and introduces assumptions not aligned with the given constraints.",
+        "issues": [
+          "Facts section is empty and does not provide necessary constraints.",
+          "The solution assumes additional rooms (R102) without them being mentioned in the facts.",
+          "No clear indication of how to handle Schmidt's five daily slots for Sports given only one slot per day is provided."
+        ]
+      },
+      {
+        "name": "Creative Writing",
+        "score": 8,
+        "comment": "The piece captures a cyberpunk-noir atmosphere well and includes an intriguing cliffhanger ending. However, it lacks adherence to any given facts or constraints and the writing style, while competent, misses opportunities for deeper engagement.",
+        "issues": [
+          "No specific facts provided to adhere to in the story",
+          "The writing style is good but could be more engaging"
+        ]
+      },
+      {
+        "name": "ELI5 Complexity",
+        "score": 8,
+        "comment": "The answer uses a clear and engaging analogy that an 8-year-old can understand, but it slightly misrepresents the speed at which entanglement occurs.",
+        "issues": [
+          "The explanation could be slightly more accurate in terms of scientific simplification; the concept of 'instantly' changing might imply faster-than-light communication which is not correct according to current understanding of quantum mechanics."
+        ]
+      },
+      {
+        "name": "Python Coding",
+        "score": 9,
+        "comment": "The solution is well-structured and meets all specified requirements except for an incorrect interpretation of the no-spaces validation.",
+        "issues": [
+          "The function incorrectly validates the 'no spaces' criteria. It should check for the absence of any space character rather than matching a pattern that contains spaces."
+        ]
+      },
+      {
+        "name": "Customer Support",
+        "score": 8,
+        "comment": "The response is empathetic and professional but lacks specific details on how to immediately assist the customer with their lost luggage.",
+        "issues": [
+          "No concrete next steps for immediate assistance other than offering a local clothing store service which is not detailed"
+        ]
+      }
+    ],
+    "metrics": {
+      "peak_vram_mb": 11709.35,
+      "avg_vram_mb": 10436.943000000003
+    },
+    "gpu_data": [
+      {
+        "gpu": "AMD Radeon RX 6700 XT",
+        "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
+        "peak_vram": 11709.35,
+        "avg_vram": 10436.943000000003,
+        "speed": 19.65
+      }
+    ],
+    "total_score": 67
+  },
+  {
     "model": "gemma3:12b",
     "benchmark_version": "v1",
     "date": "2026-01-18T13:05:23.773161",
