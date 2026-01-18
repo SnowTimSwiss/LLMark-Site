@@ -6,9 +6,8 @@ const ModelDetails = ({ data }) => {
 
     const { model, total_score, date, system, model_details, benchmarks, metrics, judge_model } = data;
 
-    // Fallback VRAM calculation if metrics are missing from root
-    const peakVram = metrics?.peak_vram_mb || (benchmarks ? Math.max(...benchmarks.map(b => b.metrics?.peak_vram_mb).filter(v => v)) : 0);
-    const avgVram = metrics?.avg_vram_mb || (benchmarks ? (benchmarks.reduce((acc, b) => acc + (b.metrics?.avg_vram_mb || 0), 0) / benchmarks.length) : 0);
+    const peakVram = metrics?.peak_vram_mb || 0;
+    const avgVram = metrics?.avg_vram_mb || 0;
 
     return (
         <div className="model-details">
@@ -34,29 +33,41 @@ const ModelDetails = ({ data }) => {
                     </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid var(--border)' }}>
-                    <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--accent)' }}>
-                            <HardDrive size={18} /> <strong>VRAM Usage</strong>
-                        </div>
-                        <div>Peak: {peakVram > 0 ? peakVram.toFixed(0) : '-'} MB</div>
-                        <div>Avg: {avgVram > 0 ? avgVram.toFixed(0) : '-'} MB</div>
-                    </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem', marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid var(--border)' }}>
                     <div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--accent)' }}>
                             <HardDrive size={18} /> <strong>Context Window</strong>
                         </div>
                         <div>{model_details?.context_length || 'Unknown'}</div>
                         <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
-                            Tested with: {model_details?.context_length || 'N/A'}. Note: VRAM usage and performance depends on context window size. It might have been higher if the context window was larger.
+                            Note: VRAM usage and performance depends on context window size.
                         </div>
                     </div>
-                    <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--accent)' }}>
-                            <Cpu size={18} /> <strong>System</strong>
+
+                    <div style={{ gridColumn: 'span 2' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: 'var(--accent)' }}>
+                            <Cpu size={18} /> <strong>GPU Performance & VRAM</strong>
                         </div>
-                        <div style={{ fontSize: '0.9rem' }}>{system?.gpu}</div>
-                        <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{system?.cpu}</div>
+                        <div style={{ display: 'grid', gap: '1rem' }}>
+                            {(data.gpu_data || [{ gpu: system?.gpu, cpu: system?.cpu, speed: benchmarks?.find(b => b.name === "Velocity/Speed")?.score, peak_vram: peakVram, avg_vram: avgVram }]).map((gpuEntry, idx) => (
+                                <div key={idx} style={{ background: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+                                    <div>
+                                        <div style={{ fontWeight: 'bold' }}>{gpuEntry.gpu}</div>
+                                        <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{gpuEntry.cpu}</div>
+                                    </div>
+                                    <div style={{ display: 'flex', gap: '2rem' }}>
+                                        <div style={{ textAlign: 'center' }}>
+                                            <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--accent)' }}>{gpuEntry.speed ? `${gpuEntry.speed.toFixed(1)} t/s` : '-'}</div>
+                                            <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Speed</div>
+                                        </div>
+                                        <div style={{ textAlign: 'center' }}>
+                                            <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{gpuEntry.peak_vram > 0 ? gpuEntry.peak_vram.toFixed(0) : '-'} MB</div>
+                                            <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Peak VRAM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

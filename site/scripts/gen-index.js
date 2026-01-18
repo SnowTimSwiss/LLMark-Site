@@ -26,40 +26,141 @@ if (!fs.existsSync(publicDir)) {
 }
 
 const files = fs.readdirSync(BENCHMARKS_DIR).filter(f => f.endsWith('.json'));
-const benchmarks = [];
+const modelsMap = new Map(); // modelName -> { versions: { versionNumber -> [data] } }
 
 files.forEach(file => {
     try {
         const content = fs.readFileSync(path.join(BENCHMARKS_DIR, file), 'utf-8');
         const data = JSON.parse(content);
 
-        // Add metadata
-        data.filename = file;
+        const modelName = data.model;
+        const versionStr = data.benchmark_version || 'v1';
+        const versionNum = parseInt(versionStr.replace('v', '')) || 1;
 
-        // Aggregate VRAM metrics from benchmarks if missing from root
-        if (data.benchmarks && data.benchmarks.length > 0) {
-            const peakVrams = data.benchmarks
-                .map(b => b.metrics?.peak_vram_mb)
-                .filter(v => v !== undefined && v !== null);
-            const avgVrams = data.benchmarks
-                .map(b => b.metrics?.avg_vram_mb)
-                .filter(v => v !== undefined && v !== null);
-
-            if (!data.metrics) data.metrics = {};
-
-            if (peakVrams.length > 0) {
-                data.metrics.peak_vram_mb = Math.max(...peakVrams);
-            }
-            if (avgVrams.length > 0) {
-                const sum = avgVrams.reduce((a, b) => a + b, 0);
-                data.metrics.avg_vram_mb = sum / avgVrams.length;
-            }
+        if (!modelsMap.has(modelName)) {
+            modelsMap.set(modelName, { latestVersion: 0, dataByVersion: {} });
         }
 
-        benchmarks.push(data);
+        const modelEntry = modelsMap.get(modelName);
+        if (versionNum > modelEntry.latestVersion) {
+            modelEntry.latestVersion = versionNum;
+        }
+
+        if (!modelEntry.dataByVersion[versionNum]) {
+            modelEntry.dataByVersion[versionNum] = [];
+        }
+        modelEntry.dataByVersion[versionNum].push(data);
     } catch (err) {
         console.error(`Error parsing ${file}:`, err);
     }
+});
+
+const benchmarks = [];
+
+modelsMap.forEach((modelEntry, modelName) => {
+    const latestDataList = modelEntry.dataByVersion[modelEntry.latestVersion];
+    if (!latestDataList || latestDataList.length === 0) return;
+
+    // Use the first entry as a template for metadata
+    const template = latestDataList[0];
+    const aggregated = {
+        model: modelName,
+        benchmark_version: `v${modelEntry.latestVersion}`,
+        date: template.date,
+        judge_model: template.judge_model,
+        model_details: template.model_details,
+        filename: template.filename, // Keep for routing, though it's now an aggregate
+        benchmarks: [],
+        metrics: { peak_vram_mb: 0, avg_vram_mb: 0 },
+        gpu_data: [], // [{ gpu: string, peak_vram: number, avg_vram: number, speed: number }]
+        total_score: 0
+    };
+
+    // Aggregate Scores per Benchmark Category
+    const categoryScores = {}; // categoryName -> [scores]
+    const categoryComments = {}; // categoryName -> [comments]
+    const categoryIssues = {}; // categoryName -> [issues]
+
+    latestDataList.forEach(entry => {
+        entry.benchmarks?.forEach(b => {
+            if (!categoryScores[b.name]) {
+                categoryScores[b.name] = [];
+                categoryComments[b.name] = [];
+                categoryIssues[b.name] = [];
+            }
+            categoryScores[b.name].push(b.score);
+            if (b.comment) categoryComments[b.name].push(b.comment);
+            if (b.issues) categoryIssues[b.name].push(...b.issues);
+        });
+
+        // Collect GPU Speed/Metrics
+        const speedBench = entry.benchmarks?.find(b => b.name === "Velocity/Speed");
+        const gpuName = entry.system?.gpu || "Unknown GPU";
+
+        // Find or create GPU entry
+        let gpuEntry = aggregated.gpu_data.find(g => g.gpu === gpuName);
+        if (!gpuEntry) {
+            gpuEntry = {
+                gpu: gpuName,
+                cpu: entry.system?.cpu,
+                peak_vram: 0,
+                avg_vram: 0,
+                speed: 0,
+                count: 0,
+                speeds: []
+            };
+            aggregated.gpu_data.push(gpuEntry);
+        }
+
+        gpuEntry.count++;
+        if (speedBench?.details?.tokens_per_sec) {
+            gpuEntry.speeds.push(speedBench.details.tokens_per_sec);
+        }
+
+        // VRAM from root metrics if available, else from benchmarks
+        const peak = entry.metrics?.peak_vram_mb || (entry.benchmarks ? Math.max(...entry.benchmarks.map(b => b.metrics?.peak_vram_mb).filter(v => v)) : 0);
+        const avg = entry.metrics?.avg_vram_mb || (entry.benchmarks ? (entry.benchmarks.reduce((acc, b) => acc + (b.metrics?.avg_vram_mb || 0), 0) / entry.benchmarks.length) : 0);
+
+        gpuEntry.peak_vram = Math.max(gpuEntry.peak_vram, peak);
+        gpuEntry.avg_vram = (gpuEntry.avg_vram * (gpuEntry.count - 1) + avg) / gpuEntry.count;
+    });
+
+    // Finalize GPU speeds (average if multiple per same GPU)
+    aggregated.gpu_data.forEach(g => {
+        if (g.speeds.length > 0) {
+            g.speed = g.speeds.reduce((a, b) => a + b, 0) / g.speeds.length;
+        }
+        delete g.speeds;
+        delete g.count;
+    });
+
+    // Finalize Categories
+    Object.keys(categoryScores).forEach(catName => {
+        const scores = categoryScores[catName];
+        const avgScore = scores.reduce((a, b) => a + b, 0) / scores.length;
+
+        // Don't show "Velocity/Speed" as a regular category if it's handled via gpu_data
+        // (Actually keep it for backward compatibility but maybe filtered in UI)
+
+        aggregated.benchmarks.push({
+            name: catName,
+            score: parseFloat(avgScore.toFixed(2)),
+            comment: categoryComments[catName].length > 0 ? categoryComments[catName][0] : null, // Just take first comment for now
+            issues: [...new Set(categoryIssues[catName])] // Unique issues
+        });
+    });
+
+    // Calculate Total Score (Average of all entry total_scores)
+    const totalScores = latestDataList.map(d => d.total_score || 0);
+    aggregated.total_score = Math.round(totalScores.reduce((a, b) => a + b, 0) / totalScores.length);
+
+    // Global VRAM metrics (Average of all peak/avg across all GPUs for main leaderboard)
+    if (aggregated.gpu_data.length > 0) {
+        aggregated.metrics.peak_vram_mb = Math.max(...aggregated.gpu_data.map(g => g.peak_vram));
+        aggregated.metrics.avg_vram_mb = aggregated.gpu_data.reduce((a, b) => a + b.avg_vram, 0) / aggregated.gpu_data.length;
+    }
+
+    benchmarks.push(aggregated);
 });
 
 // Sort by score desc by default
@@ -67,3 +168,4 @@ benchmarks.sort((a, b) => (b.total_score || 0) - (a.total_score || 0));
 
 fs.writeFileSync(OUT_FILE, JSON.stringify(benchmarks, null, 2));
 console.log(`Generated db.json with ${benchmarks.length} entries at ${OUT_FILE}`);
+
