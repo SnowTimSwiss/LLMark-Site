@@ -74,7 +74,7 @@ const ModelDetails = ({ data }) => {
 
             <h2 style={{ marginTop: '2rem' }}>Benchmark Breakdown</h2>
             <div style={{ display: 'grid', gap: '1rem' }}>
-                {benchmarks?.map((bench, idx) => (
+                {benchmarks?.filter(bench => bench.name !== "Velocity/Speed").map((bench, idx) => (
                     <div key={idx} className="glass-panel" style={{ borderLeft: `4px solid ${bench.score >= 8 ? 'var(--success)' : bench.score >= 5 ? 'var(--warning)' : 'var(--danger)'}` }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                             <h3>{bench.name}</h3>
