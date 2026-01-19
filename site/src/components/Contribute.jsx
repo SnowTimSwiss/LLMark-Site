@@ -1,4 +1,4 @@
-import { Github, MessageSquare, Send } from 'lucide-react';
+import { Github, MessageSquare, Download, CheckCircle } from 'lucide-react';
 
 const Contribute = () => {
     return (
@@ -9,16 +9,16 @@ const Contribute = () => {
                 </h1>
 
                 <p style={{ fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-                    LLMark is an open-source project. You can help by running benchmarks on your own hardware and sharing the results.
+                    Helping the community is easier than ever. Simply run the benchmark tool on your hardware, and it will handle the rest.
                 </p>
 
                 <div style={{ display: 'grid', gap: '2rem' }}>
                     <section>
                         <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                            <Github size={24} /> 1. Use LLMark Software
+                            <Download size={24} /> 1. Run Benchmarks
                         </h2>
                         <p>
-                            Download and run our benchmark tool to test models on your system. It automatically generates the JSON files needed for this site.
+                            Download and run our lightweight benchmark tool to test models on your system.
                         </p>
                         <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1rem', borderRadius: '0.5rem', fontFamily: 'monospace', marginTop: '1rem' }}>
                             git clone https://github.com/snowtimswiss/llmark<br />
@@ -29,13 +29,22 @@ const Contribute = () => {
 
                     <section>
                         <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                            <Send size={24} /> 2. Submit Results
+                            <CheckCircle size={24} /> 2. Automatic Upload
                         </h2>
                         <p>
-                            Once you have your benchmark JSON files (found in the <code>data/benchmarks</code> folder of the tool), you can submit them via a Pull Request to our site repository.
+                            Once the benchmark is complete, the tool will ask for your consent to upload the results. With your approval, the data is sent directly to our database and will appear on the leaderboard!
+                        </p>
+                    </section>
+
+                    <section style={{ borderTop: '1px solid var(--border)', paddingTop: '2rem' }}>
+                        <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+                            <Github size={24} /> Manual Submission
+                        </h2>
+                        <p>
+                            Prefer to do it manually? You can still submit your benchmark JSON files via a Pull Request to our site repository.
                         </p>
                         <a href="https://github.com/snowtimswiss/LLMark-Site" target="_blank" rel="noopener noreferrer" className="btn" style={{ marginTop: '1rem', display: 'inline-flex' }}>
-                            Submit on GitHub
+                            View GitHub Repo
                         </a>
                     </section>
 
@@ -44,7 +53,7 @@ const Contribute = () => {
                             <MessageSquare size={24} /> Questions?
                         </h2>
                         <p>
-                            Join our community or open an issue on GitHub if you need help getting started with benchmarking.
+                            Join our community or open an issue on GitHub if you need help getting started.
                         </p>
                     </section>
                 </div>
