@@ -64,27 +64,42 @@ const ModelDetails = ({ data }) => {
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                         <div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--accent)' }}>
-                                <HardDrive size={18} /> <strong>Context Window</strong>
-                            </div>
-                            <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{model_details?.context_length || 'Unknown'}</div>
-                        </div>
-
-                        <div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: 'var(--accent)' }}>
                                 <Cpu size={18} /> <strong>Tested Hardware</strong>
                             </div>
                             <div style={{ display: 'grid', gap: '1rem' }}>
-                                {(data.gpu_data || [{ gpu: system?.gpu, cpu: system?.cpu, speed: benchmarks?.find(b => b.name === "Velocity/Speed")?.score, peak_vram: peakVram, avg_vram: avgVram }]).map((gpuEntry, idx) => (
-                                    <div key={idx} style={{ background: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '0.5rem' }}>
-                                        <div style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>{gpuEntry.gpu}</div>
-                                        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>{gpuEntry.cpu}</div>
-                                        <div style={{ display: 'flex', gap: '1rem', fontSize: '0.85rem' }}>
-                                            <span style={{ color: 'var(--accent)' }}>{gpuEntry.speed ? `${gpuEntry.speed.toFixed(1)} t/s` : '-'}</span>
-                                            <span>{gpuEntry.peak_vram > 0 ? `${gpuEntry.peak_vram.toFixed(0)} MB Peak` : '-'}</span>
+                                {(data.gpu_data || [{ gpu: system?.gpu, cpu: system?.cpu, speed: benchmarks?.find(b => b.name === "Velocity/Speed")?.score, peak_vram: peakVram, avg_vram: avgVram, context_length: model_details?.context_length, vram_total: system?.vram_total_mb }]).map((gpuEntry, idx) => {
+                                    const vramBuffer = (gpuEntry.vram_total - gpuEntry.peak_vram) / 1024; // in GB
+                                    const isTight = gpuEntry.vram_total && vramBuffer < 1.0;
+
+                                    return (
+                                        <div key={idx} style={{ background: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '0.5rem', border: isTight ? '1px solid var(--warning)' : 'none' }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                                <div>
+                                                    <div style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>{gpuEntry.gpu}</div>
+                                                    <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>{gpuEntry.cpu}</div>
+                                                </div>
+                                                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                                    {gpuEntry.context_length && (
+                                                        <div style={{ fontSize: '0.7rem', background: 'rgba(255,255,255,0.1)', padding: '0.1rem 0.4rem', borderRadius: '0.25rem', color: 'var(--text-secondary)' }}>
+                                                            {gpuEntry.context_length} CTX
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div style={{ display: 'flex', gap: '1rem', fontSize: '0.85rem', alignItems: 'center' }}>
+                                                <span style={{ color: 'var(--accent)', fontWeight: 'bold' }}>{gpuEntry.speed ? `${gpuEntry.speed.toFixed(1)} t/s` : '-'}</span>
+                                                <span style={{ color: isTight ? 'var(--warning)' : 'inherit' }}>{gpuEntry.peak_vram > 0 ? `${gpuEntry.peak_vram.toFixed(0)} MB Peak` : '-'}</span>
+                                                {gpuEntry.vram_total && <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>/ {(gpuEntry.vram_total / 1024).toFixed(0)}GB</span>}
+                                            </div>
+                                            {isTight && (
+                                                <div style={{ marginTop: '0.5rem', fontSize: '0.7rem', color: 'var(--warning)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                                                    <AlertTriangle size={12} /> VRAM nearly full. Full GPU offload might be unstable.
+                                                </div>
+                                            )}
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>

@@ -114,6 +114,9 @@ modelsMap.forEach((modelEntry, modelName) => {
             gpuEntry = {
                 gpu: gpuName,
                 cpu: entry.system?.cpu,
+                context_length: entry.model_details?.context_length,
+                vram_total: entry.system?.vram_total_mb,
+                vram_used_at_start: entry.system?.vram_used_mb,
                 peak_vram: 0,
                 avg_vram: 0,
                 speed: 0,

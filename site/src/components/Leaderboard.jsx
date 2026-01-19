@@ -193,7 +193,7 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
                 if (aValue > bValue) return sortConfig.direction === 'asc' ? 1 : -1;
                 return 0;
             });
-    }, [data, filterText, sortConfig, scoreRange, vramRange, selectedFamilies, selectedGpus]);
+    }, [data, filterText, sortConfig, scoreRange, vramRange, vramLimit, selectedFamilies, selectedGpus]);
 
 
     const requestSort = (key) => {
