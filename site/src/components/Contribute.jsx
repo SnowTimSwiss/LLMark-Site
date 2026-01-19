@@ -23,7 +23,8 @@ const Contribute = () => {
                         <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1rem', borderRadius: '0.5rem', fontFamily: 'monospace', marginTop: '1rem' }}>
                             git clone https://github.com/snowtimswiss/llmark<br />
                             cd llmark<br />
-                            python main.py
+                            start.bat  |  for windows<br />
+                            ./start.sh  |  for linux <br />
                         </div>
                     </section>
 
