@@ -118,7 +118,7 @@
     "benchmarks": [
       {
         "name": "Velocity/Speed",
-        "score": 42.33,
+        "score": 47.8,
         "comment": "42.33 tokens/sec",
         "issues": []
       },
@@ -142,7 +142,7 @@
       },
       {
         "name": "Context Extraction",
-        "score": 8.33,
+        "score": 8.16,
         "comment": "Good performance. Issue (E2): The original deadline of June 15 is n... Strong: Meeting Transcript Analysis",
         "issues": []
       },
@@ -166,7 +166,7 @@
       },
       {
         "name": "Python Coding",
-        "score": 8.67,
+        "score": 8.84,
         "comment": "Good performance. Issue (I2): The function does not handle the case... Strong: Debug & Refactor Challenge",
         "issues": []
       },
@@ -190,8 +190,8 @@
       }
     ],
     "metrics": {
-      "peak_vram_mb": 6460.19,
-      "avg_vram_mb": 530.9616666666667
+      "peak_vram_mb": 7144.64,
+      "avg_vram_mb": 539.34875
     },
     "gpu_data": [
       {
@@ -203,6 +203,16 @@
         "peak_vram": 6460.19,
         "avg_vram": 530.9616666666667,
         "speed": 42.33
+      },
+      {
+        "gpu": "AMD Radeon RX 6700 XT",
+        "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
+        "context_length": 131072,
+        "vram_total": 12272,
+        "vram_used_at_start": 793.12,
+        "peak_vram": 7144.64,
+        "avg_vram": 547.7358333333333,
+        "speed": 53.27
       }
     ],
     "total_score": 89
