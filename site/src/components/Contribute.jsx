@@ -26,6 +26,9 @@ const Contribute = () => {
                             start.bat  |  for windows<br />
                             ./start.sh  |  for linux <br />
                         </div>
+                        <p style={{ marginTop: '1rem', color: 'var(--text-secondary)' }}>
+                            <span style={{ color: '#60a5fa', fontWeight: 'bold' }}>Auto-Pilot Mode:</span> On Windows, you can run <code>autopilot.bat</code> to automatically test several popular models without any manual intervention.
+                        </p>
                     </section>
 
                     <section>

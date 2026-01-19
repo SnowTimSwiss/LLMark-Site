@@ -40,15 +40,16 @@ Key principles:
 
 ## Submitting Benchmarks
 
-### Automatic Upload (recommended but comming soon)
+### Automatic Upload (recommended)
 
 LLMark can upload benchmark results directly to LLMark-Site without requiring GitHub knowledge.
 
+* **Auto-Pilot Mode:** On Windows, you can run `autopilot.bat` to automatically download, test, and upload results for several popular models without any manual intervention.
 * No account required
 
-### Upload via GitHub (currently available)
+### Upload via GitHub
 
-LLMark can upload benchmark results directly to LLMark-Site Just with you signing in with GitHub and creatin a token.
+LLMark can upload benchmark results directly to LLMark-Site by signing in with GitHub and creating a token.
 
 ---
 
