@@ -1,0 +1,204 @@
+[
+  {
+    "model": "gemma3:12b",
+    "benchmark_version": "v2",
+    "date": "2026-01-18T16:58:46.329770",
+    "judge_model": "qwen2.5:14b-instruct",
+    "model_details": {
+      "context_length": null,
+      "family": "gemma3",
+      "parameter_size": "12.2B",
+      "quantization": "Q4_K_M"
+    },
+    "filename": "gemma3-12b",
+    "benchmarks": [
+      {
+        "name": "Velocity/Speed",
+        "score": 34.68,
+        "comment": "34.68 tokens/sec",
+        "issues": []
+      },
+      {
+        "name": "English Quality",
+        "score": 7.67,
+        "comment": "Good performance. Issue (B3): Missing key information such as actua...",
+        "issues": []
+      },
+      {
+        "name": "German Quality",
+        "score": 8,
+        "comment": "Good performance. Issue (C1): Fehlende Rechtschreibung von 'Zahlung...",
+        "issues": []
+      },
+      {
+        "name": "Fact Checking",
+        "score": 8.33,
+        "comment": "Good performance. Issue (D1): Fact 3 is incorrectly marked as INCOR... Strong: Mixed Facts - Some Tricky",
+        "issues": []
+      },
+      {
+        "name": "Context Extraction",
+        "score": 8,
+        "comment": "Good performance. Issue (E1): The answer includes more than 10 spec...",
+        "issues": []
+      },
+      {
+        "name": "Logic & Planning",
+        "score": 7.67,
+        "comment": "Good performance. Issue (F3): No clear indication of how Project 3'...",
+        "issues": []
+      },
+      {
+        "name": "Creative Writing",
+        "score": 7.67,
+        "comment": "Good performance. Issue (G2): Historical accuracy could be improved...",
+        "issues": []
+      },
+      {
+        "name": "Technical Explanation",
+        "score": 8,
+        "comment": "Good performance. Issue (H1): The explanation could be slightly mor...",
+        "issues": []
+      },
+      {
+        "name": "Python Coding",
+        "score": 9,
+        "comment": "Excellent performance. Strong: Debug & Refactor Challenge",
+        "issues": []
+      },
+      {
+        "name": "Customer Support",
+        "score": 9,
+        "comment": "Excellent performance. Strong: Billing Issue - Angry Customer",
+        "issues": []
+      },
+      {
+        "name": "Knowledge",
+        "score": 9.67,
+        "comment": "Excellent performance. Strong: Science & Technology Facts",
+        "issues": []
+      },
+      {
+        "name": "Uncertainty Handling",
+        "score": 9,
+        "comment": "Excellent performance. Strong: Conflicting Information",
+        "issues": []
+      }
+    ],
+    "metrics": {
+      "peak_vram_mb": 10027.06,
+      "avg_vram_mb": 823.6825
+    },
+    "gpu_data": [
+      {
+        "gpu": "AMD Radeon RX 6700 XT",
+        "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
+        "peak_vram": 10027.06,
+        "avg_vram": 823.6825,
+        "speed": 34.68
+      }
+    ],
+    "total_score": 92
+  },
+  {
+    "model": "llama3.1:8b",
+    "benchmark_version": "v2",
+    "date": "2026-01-18T21:10:24.752726",
+    "judge_model": "qwen2.5:14b-instruct",
+    "model_details": {
+      "context_length": 131072,
+      "family": "llama",
+      "parameter_size": "8.0B",
+      "quantization": "Q4_K_M"
+    },
+    "filename": "llama31-8b",
+    "benchmarks": [
+      {
+        "name": "Velocity/Speed",
+        "score": 42.33,
+        "comment": "42.33 tokens/sec",
+        "issues": []
+      },
+      {
+        "name": "English Quality",
+        "score": 8,
+        "comment": "Good performance. Issue (B1): No facts provided in the prompt to ve...",
+        "issues": []
+      },
+      {
+        "name": "German Quality",
+        "score": 7.33,
+        "comment": "Mixed results. Issue (C1): No facts provided to include in the l...",
+        "issues": []
+      },
+      {
+        "name": "Fact Checking",
+        "score": 7.33,
+        "comment": "Mixed results. Issue (D1): Incorrect evaluation of fact 3",
+        "issues": []
+      },
+      {
+        "name": "Context Extraction",
+        "score": 8.33,
+        "comment": "Good performance. Issue (E2): The original deadline of June 15 is n... Strong: Meeting Transcript Analysis",
+        "issues": []
+      },
+      {
+        "name": "Logic & Planning",
+        "score": 6.67,
+        "comment": "Mixed results. Issue (F1): Constraint violations (German teacher...",
+        "issues": []
+      },
+      {
+        "name": "Creative Writing",
+        "score": 7.33,
+        "comment": "Mixed results. Issue (G2): Anachronistic use of the term 'gold f...",
+        "issues": []
+      },
+      {
+        "name": "Technical Explanation",
+        "score": 8,
+        "comment": "Good performance. Issue (H1): The explanation could be more precise...",
+        "issues": []
+      },
+      {
+        "name": "Python Coding",
+        "score": 8.67,
+        "comment": "Good performance. Issue (I2): The function does not handle the case... Strong: Debug & Refactor Challenge",
+        "issues": []
+      },
+      {
+        "name": "Customer Support",
+        "score": 8.67,
+        "comment": "Good performance. Issue (J1): Could use more specific details on co... Strong: Billing Issue - Angry Customer",
+        "issues": []
+      },
+      {
+        "name": "Knowledge",
+        "score": 9.33,
+        "comment": "Excellent performance. Strong: General Knowledge Quiz",
+        "issues": []
+      },
+      {
+        "name": "Uncertainty Handling",
+        "score": 9,
+        "comment": "Excellent performance. Strong: Conflicting Information",
+        "issues": []
+      }
+    ],
+    "metrics": {
+      "peak_vram_mb": 6460.19,
+      "avg_vram_mb": 530.9616666666667
+    },
+    "gpu_data": [
+      {
+        "gpu": "NVIDIA GeForce RTX 3050",
+        "cpu": "AMD Ryzen 3 1200 Quad-Core Processor",
+        "peak_vram": 6460.19,
+        "avg_vram": 530.9616666666667,
+        "speed": 42.33
+      }
+    ],
+    "total_score": 89
+  }
+]

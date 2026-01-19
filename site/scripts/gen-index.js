@@ -33,7 +33,14 @@ files.forEach(file => {
         const content = fs.readFileSync(path.join(BENCHMARKS_DIR, file), 'utf-8');
         const data = JSON.parse(content);
 
-        const modelName = data.model;
+        let modelName = data.model;
+
+        // Normalize: llama3.1:latest -> llama3.1:8b
+        if (modelName.endsWith(':latest')) {
+            const size = data.model_details?.parameter_size?.toLowerCase().replace(/[^a-z0-9.]/g, '') || 'latest';
+            modelName = modelName.replace(':latest', `:${size}`);
+        }
+
         const versionStr = data.benchmark_version || 'v1';
         const versionNum = parseInt(versionStr.replace('v', '')) || 1;
 

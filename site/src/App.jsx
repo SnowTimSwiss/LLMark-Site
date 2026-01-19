@@ -5,6 +5,8 @@ import Leaderboard from './components/Leaderboard'
 import ModelDetails from './components/ModelDetails'
 import Compare from './components/Compare'
 
+import Contribute from './components/Contribute'
+
 // Filter/Wrapper for details page
 const ModelDetailsWrapper = ({ data }) => {
     const { id } = useParams();
@@ -71,6 +73,7 @@ function App() {
                             </span>
                         )}
                     </button>
+                    <button onClick={() => navigate('/contribute')} className={`btn ${location.pathname === '/contribute' ? '' : 'btn-secondary'}`}>Contribute</button>
                 </div>
             </nav>
 
@@ -92,6 +95,7 @@ function App() {
                             onRemove={(id) => setCompareList(compareList.filter(x => x !== id))}
                         />
                     } />
+                    <Route path="/contribute" element={<Contribute />} />
                 </Routes>
             </div>
         </div>

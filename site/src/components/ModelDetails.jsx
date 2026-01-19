@@ -1,5 +1,6 @@
-import { ArrowLeft, Cpu, HardDrive, AlertTriangle, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Cpu, HardDrive, AlertTriangle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 
 const ModelDetails = ({ data }) => {
     if (!data) return <div className="glass-panel">Model not found</div>;
@@ -8,6 +9,15 @@ const ModelDetails = ({ data }) => {
 
     const peakVram = metrics?.peak_vram_mb || 0;
     const avgVram = metrics?.avg_vram_mb || 0;
+
+    // Prepare chart data
+    const chartData = benchmarks
+        ?.filter(b => b.name !== "Velocity/Speed")
+        .map(b => ({
+            subject: b.name,
+            A: b.score,
+            fullMark: 10,
+        }));
 
     return (
         <div className="model-details">
@@ -33,40 +43,49 @@ const ModelDetails = ({ data }) => {
                     </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem', marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid var(--border)' }}>
-                    <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--accent)' }}>
-                            <HardDrive size={18} /> <strong>Context Window</strong>
-                        </div>
-                        <div>{model_details?.context_length || 'Unknown'}</div>
-                        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
-                            Note: VRAM usage and performance depends on context window size.
-                        </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '2rem', paddingTop: '2rem', borderTop: '1px solid var(--border)' }}>
+                    {/* Performance Overview Chart */}
+                    <div style={{ height: '300px', background: 'rgba(255,255,255,0.02)', borderRadius: '1rem', padding: '1rem' }}>
+                        <h4 style={{ margin: '0 0 1rem 0', textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Capabilities Radar</h4>
+                        <ResponsiveContainer width="100%" height="100%">
+                            <RadarChart cx="50%" cy="50%" outerRadius="80%" data={chartData}>
+                                <PolarGrid stroke="rgba(255,255,255,0.1)" />
+                                <PolarAngleAxis dataKey="subject" tick={{ fill: 'var(--text-secondary)', fontSize: 10 }} />
+                                <Radar
+                                    name={model}
+                                    dataKey="A"
+                                    stroke="var(--accent)"
+                                    fill="var(--accent)"
+                                    fillOpacity={0.6}
+                                />
+                            </RadarChart>
+                        </ResponsiveContainer>
                     </div>
 
-                    <div style={{ gridColumn: 'span 2' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: 'var(--accent)' }}>
-                            <Cpu size={18} /> <strong>GPU Performance & VRAM</strong>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                        <div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--accent)' }}>
+                                <HardDrive size={18} /> <strong>Context Window</strong>
+                            </div>
+                            <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{model_details?.context_length || 'Unknown'}</div>
                         </div>
-                        <div style={{ display: 'grid', gap: '1rem' }}>
-                            {(data.gpu_data || [{ gpu: system?.gpu, cpu: system?.cpu, speed: benchmarks?.find(b => b.name === "Velocity/Speed")?.score, peak_vram: peakVram, avg_vram: avgVram }]).map((gpuEntry, idx) => (
-                                <div key={idx} style={{ background: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-                                    <div>
-                                        <div style={{ fontWeight: 'bold' }}>{gpuEntry.gpu}</div>
-                                        <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{gpuEntry.cpu}</div>
-                                    </div>
-                                    <div style={{ display: 'flex', gap: '2rem' }}>
-                                        <div style={{ textAlign: 'center' }}>
-                                            <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--accent)' }}>{gpuEntry.speed ? `${gpuEntry.speed.toFixed(1)} t/s` : '-'}</div>
-                                            <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Speed</div>
-                                        </div>
-                                        <div style={{ textAlign: 'center' }}>
-                                            <div style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{gpuEntry.peak_vram > 0 ? gpuEntry.peak_vram.toFixed(0) : '-'} MB</div>
-                                            <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Peak VRAM</div>
+
+                        <div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', color: 'var(--accent)' }}>
+                                <Cpu size={18} /> <strong>Tested Hardware</strong>
+                            </div>
+                            <div style={{ display: 'grid', gap: '1rem' }}>
+                                {(data.gpu_data || [{ gpu: system?.gpu, cpu: system?.cpu, speed: benchmarks?.find(b => b.name === "Velocity/Speed")?.score, peak_vram: peakVram, avg_vram: avgVram }]).map((gpuEntry, idx) => (
+                                    <div key={idx} style={{ background: 'rgba(255,255,255,0.03)', padding: '1rem', borderRadius: '0.5rem' }}>
+                                        <div style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>{gpuEntry.gpu}</div>
+                                        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>{gpuEntry.cpu}</div>
+                                        <div style={{ display: 'flex', gap: '1rem', fontSize: '0.85rem' }}>
+                                            <span style={{ color: 'var(--accent)' }}>{gpuEntry.speed ? `${gpuEntry.speed.toFixed(1)} t/s` : '-'}</span>
+                                            <span>{gpuEntry.peak_vram > 0 ? `${gpuEntry.peak_vram.toFixed(0)} MB Peak` : '-'}</span>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -77,22 +96,22 @@ const ModelDetails = ({ data }) => {
                 {benchmarks?.filter(bench => bench.name !== "Velocity/Speed").map((bench, idx) => (
                     <div key={idx} className="glass-panel" style={{ borderLeft: `4px solid ${bench.score >= 8 ? 'var(--success)' : bench.score >= 5 ? 'var(--warning)' : 'var(--danger)'}` }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                            <h3>{bench.name}</h3>
+                            <h3 style={{ margin: 0 }}>{bench.name}</h3>
                             <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>{bench.score}/10</span>
                         </div>
 
                         {bench.comment && (
-                            <p style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '0.5rem', fontStyle: 'italic' }}>
+                            <p style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '0.5rem', fontStyle: 'italic', marginTop: '1rem' }}>
                                 "{bench.comment}"
                             </p>
                         )}
 
                         {bench.issues && bench.issues.length > 0 && (
                             <div style={{ marginTop: '1rem' }}>
-                                <h4 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--danger)' }}>
+                                <h4 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--danger)', margin: '0 0 0.5rem 0' }}>
                                     <AlertTriangle size={16} /> Issues
                                 </h4>
-                                <ul style={{ margin: 0, paddingLeft: '1.5rem' }}>
+                                <ul style={{ margin: 0, paddingLeft: '1.5rem', fontSize: '0.9rem' }}>
                                     {bench.issues.map((issue, i) => (
                                         <li key={i}>{issue}</li>
                                     ))}

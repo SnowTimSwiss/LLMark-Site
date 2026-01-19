@@ -87,6 +87,17 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
         return 0;
     };
 
+    // VRAM filtering
+    const [vramLimit, setVramLimit] = useState(0); // 0 = all
+    const vramOptions = [
+        { label: 'All', value: 0 },
+        { label: '8 GB', value: 8192 },
+        { label: '12 GB', value: 12288 },
+        { label: '16 GB', value: 16384 },
+        { label: '24 GB', value: 24576 },
+        { label: '32 GB+', value: 999999 },
+    ];
+
     // Initialize Filters based on Data
     useEffect(() => {
         if (!data || data.length === 0) return;
@@ -138,6 +149,9 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
                 // VRAM Range
                 const vram = getPeakVram(item);
                 if (vram < vramRange[0] || vram > vramRange[1]) return false;
+
+                // VRAM Limit (Max Capacity)
+                if (vramLimit > 0 && vram > vramLimit) return false;
 
                 // Family Filter
                 if (selectedFamilies.length > 0) {
@@ -196,6 +210,7 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
     const resetFilters = () => {
         setScoreRange([0, 110]);
         setVramRange([0, maxVRAM]);
+        setVramLimit(0);
         setSelectedFamilies([]);
         setSelectedGpus([]);
         setFilterText('');
@@ -221,6 +236,24 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
 
                 <SidebarSection title="Total Score">
                     <RangeFilter min={0} max={110} value={scoreRange} onChange={setScoreRange} />
+                </SidebarSection>
+
+                <SidebarSection title="Your GPU Capacity">
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                        {vramOptions.map(opt => (
+                            <button
+                                key={opt.value}
+                                onClick={() => setVramLimit(opt.value)}
+                                className={`btn ${vramLimit === opt.value ? '' : 'btn-secondary'}`}
+                                style={{ padding: '0.25rem 0.5rem', fontSize: '0.8rem', minWidth: '60px' }}
+                            >
+                                {opt.label}
+                            </button>
+                        ))}
+                    </div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
+                        Shows models that fit in your VRAM.
+                    </div>
                 </SidebarSection>
 
                 <SidebarSection title="VRAM (MB)">
