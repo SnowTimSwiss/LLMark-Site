@@ -1,6 +1,15 @@
 import { useState, useMemo, useEffect } from 'react';
 import { ChevronDown, ChevronUp, Search, Filter, X } from 'lucide-react';
 
+const getPeakVram = (item) => {
+    if (item.metrics?.peak_vram_mb) return item.metrics.peak_vram_mb;
+    if (item.benchmarks && item.benchmarks.length > 0) {
+        const vrams = item.benchmarks.map(b => b.metrics?.peak_vram_mb).filter(v => v);
+        return vrams.length > 0 ? Math.max(...vrams) : 0;
+    }
+    return 0;
+};
+
 const SidebarSection = ({ title, children, defaultOpen = true }) => {
     const [isOpen, setIsOpen] = useState(defaultOpen);
     return (
@@ -78,15 +87,6 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
     const [selectedGpus, setSelectedGpus] = useState([]);
     const [showFilters, setShowFilters] = useState(false); // Mobile toggle
 
-    const getPeakVram = (item) => {
-        if (item.metrics?.peak_vram_mb) return item.metrics.peak_vram_mb;
-        if (item.benchmarks && item.benchmarks.length > 0) {
-            const vrams = item.benchmarks.map(b => b.metrics?.peak_vram_mb).filter(v => v);
-            return vrams.length > 0 ? Math.max(...vrams) : 0;
-        }
-        return 0;
-    };
-
     // VRAM filtering
     const [vramLimit, setVramLimit] = useState(0); // 0 = all
     const vramOptions = [
@@ -136,6 +136,8 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
     };
 
     const sortedData = useMemo(() => {
+        const limitNum = Number(vramLimit);
+
         return [...data]
             .filter(item => {
                 // Text Search
@@ -151,7 +153,7 @@ const Leaderboard = ({ data, onSelectModel, compareList, onToggleCompare }) => {
                 if (vram < vramRange[0] || vram > vramRange[1]) return false;
 
                 // VRAM Limit (Max Capacity)
-                if (vramLimit > 0 && vram > vramLimit) return false;
+                if (limitNum > 0 && vram > limitNum) return false;
 
                 // Family Filter
                 if (selectedFamilies.length > 0) {
