@@ -93,6 +93,9 @@
       {
         "gpu": "AMD Radeon RX 6700 XT",
         "cpu": "11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz",
+        "context_length": null,
+        "vram_total": 12272,
+        "vram_used_at_start": 1050.48,
         "peak_vram": 10027.06,
         "avg_vram": 823.6825,
         "speed": 34.68
@@ -194,6 +197,9 @@
       {
         "gpu": "NVIDIA GeForce RTX 3050",
         "cpu": "AMD Ryzen 3 1200 Quad-Core Processor",
+        "context_length": 131072,
+        "vram_total": 8192,
+        "vram_used_at_start": 1005.5,
         "peak_vram": 6460.19,
         "avg_vram": 530.9616666666667,
         "speed": 42.33
